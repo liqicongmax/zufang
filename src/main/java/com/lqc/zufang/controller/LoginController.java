@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/zufang")
+@RequestMapping
 public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
@@ -42,8 +42,4 @@ public class LoginController {
         return "index";
     }
 
-    @RequestMapping("/test")
-    public String test(Model model) {
-        return "index";
-    }
 }
