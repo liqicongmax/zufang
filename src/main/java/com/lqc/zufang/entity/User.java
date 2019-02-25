@@ -1,13 +1,21 @@
 package com.lqc.zufang.entity;
 
-import lombok.Data;
+import com.lqc.zufang.base.BaseDto;
 
 
-public class User extends BaseEntity {
+public class User extends BaseDto {
     private static final long serialVersionUID = -7982680044418363713L;
 
     private String username;
     private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
 
     public String getUsername() {
         return username;

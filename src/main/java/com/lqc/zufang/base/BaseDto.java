@@ -1,11 +1,11 @@
-package com.lqc.zufang.entity;
+package com.lqc.zufang.base;
 
 import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class BaseEntity implements Serializable {
+public class BaseDto implements Serializable {
 
     private static final long serialVersionUID = 310943826319554984L;
     private Long id;
