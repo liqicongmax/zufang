@@ -73,11 +73,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <ul>
                     <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a
                             href="mailto:liqicong@myhexin.com">liqicong@myhexin.com</a></li>
-                    <li th:unless="not ${user}"><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a
+                    <li th:unless="${session.user}!=null"><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a
                             th:href="@{/gotoLogin}">Login</a></li>
-                    <li th:if="!${user}">
+                    <li th:if="${session.user}!=null">
                         <i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>
-                        <a href="#" th:text="${user.username}"></a>
+                        <a href="#" th:text="${session.user.username}"></a>
                     </li>
                     <!--<li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a th:href="@{/}">Register</a></li>-->
                 </ul>

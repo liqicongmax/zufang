@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class IndexController {
 
-    @RequestMapping("")
+    @RequestMapping("/index")
     public String index(Model model){
-        User user=new User();
-        model.addAttribute("user",user);
         return "index";
     }
 

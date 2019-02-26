@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author liqicong@myhexin.com
@@ -41,8 +42,7 @@ public class LoginController {
     public String login(@RequestParam("login-username") String username,
                         @RequestParam("login-password") String password,
                         Model model,
-                        HttpServletRequest request,
-                        HttpServletResponse response) {
+                        HttpSession session) {
         BaseReturnDto<Boolean> brd = new BaseReturnDto<>();
         User user = new User(username, password);
         System.out.println(username+""+password);
@@ -60,8 +60,8 @@ public class LoginController {
             logger.error("failed to login");
         }
         model.addAttribute("result", brd);
-        model.addAttribute("user",user);
-        return "index";
+        session.setAttribute("user",user);
+        return "redirect:index";
     }
 
 
