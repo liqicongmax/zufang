@@ -11,6 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author liqicong@myhexin.com
  * @date 2019/2/26 16:16
@@ -36,7 +40,9 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("login-username") String username,
                         @RequestParam("login-password") String password,
-                        Model model) {
+                        Model model,
+                        HttpServletRequest request,
+                        HttpServletResponse response) {
         BaseReturnDto<Boolean> brd = new BaseReturnDto<>();
         User user = new User(username, password);
         System.out.println(username+""+password);

@@ -1,6 +1,8 @@
 package com.lqc.zufang.controller;
 
+import com.lqc.zufang.entity.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class IndexController {
 
-    @RequestMapping("/")
-    public String index(){
-        return "/index";
+    @RequestMapping("")
+    public String index(Model model){
+        User user=new User();
+        model.addAttribute("user",user);
+        return "index";
     }
 
 }
