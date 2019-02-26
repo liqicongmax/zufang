@@ -9,4 +9,6 @@ public interface LoginService {
      * @return
      */
     boolean getUser(User user);
+
+    void insert(User user);
 }

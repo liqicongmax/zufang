@@ -8,10 +8,31 @@ public class User extends BaseDto {
 
     private String username;
     private String password;
+    /**
+     * 用户身份辨识
+     */
+    private String identity;
+
+    public String getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(String identity) {
+        this.identity = identity;
+    }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", identity='" + identity + '\'' +
+                '}';
     }
 
     public User() {

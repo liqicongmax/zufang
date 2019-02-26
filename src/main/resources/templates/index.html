@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Home</title>
 <!---css--->
@@ -63,9 +63,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="email">
 						<ul>
-							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
-							<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
-							<li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">Register</a></li>
+							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:liqicong@myhexin.com">liqicong@myhexin.com</a> </li>
+							<li th:if="${user} eq ''"><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a th:href="@{/gotoLogin}">Login</a></li>
+							<li th:if="${user} ne ''">
+								<i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>
+								<a href="#" th:text="${user.username}"></a>
+							</li>
+							<!--<li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a th:href="@{/}">Register</a></li>-->
 						</ul>
 						</div>
 						<div class="clearfix"></div>
@@ -124,7 +128,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="contact.html">Contact</a></li>
 							</ul>
 							<div class="phone">
-							<span><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>1-999-4563-555</span>
+							<span><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>157-5785-0238</span>
 							</div>
 							<div class="clearfix"></div>
 						</div>

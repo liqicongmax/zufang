@@ -11,4 +11,10 @@ public interface UserMapper {
      * @return 用户信息
      */
     User getUserByName(String name);
+
+    /**
+     * 添加新注册的用户
+     * @param user 用户实体
+     */
+    void insert(User user);
 }

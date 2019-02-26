@@ -16,8 +16,17 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public boolean getUser(User user) {
         User user1=userMapper.getUserByName(user.getUsername());
+        if(user1==null){
+            return false;
+        }
         String md5code=DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
         System.out.println(md5code);
         return md5code.equals(user1.getPassword());
+    }
+
+    @Override
+    public void insert(User user) {
+        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+        userMapper.insert(user);
     }
 }
