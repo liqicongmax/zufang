@@ -87,5 +87,9 @@ public class LoginController {
         Thread.sleep(3000);
         return "/login";
     }
-
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("user");
+        return "redirect:index";
+    }
 }

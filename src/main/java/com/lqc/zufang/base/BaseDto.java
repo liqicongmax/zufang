@@ -11,7 +11,7 @@ public class BaseDto implements Serializable {
     private Long id;
     private Timestamp inputTime;
     private Timestamp updateTime;
-
+    private Integer delFlag;
     public Long getId() {
         return id;
     }

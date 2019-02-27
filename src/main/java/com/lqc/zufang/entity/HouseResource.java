@@ -9,7 +9,7 @@ import com.lqc.zufang.base.BaseDto;
 public class HouseResource extends BaseDto {
 
     private static final long serialVersionUID = 8981586382428821589L;
-    private User belongUser;
+    private Long belongUser;
     private String provice;
     private String city;
     private String district;
@@ -18,7 +18,7 @@ public class HouseResource extends BaseDto {
     private String description;
     //房间大小
     private Integer size;
-
+    private Integer status;//0未出租,1已出租
     public Integer getSize() {
         return size;
     }
@@ -43,12 +43,20 @@ public class HouseResource extends BaseDto {
         this.description = description;
     }
 
-    public User getBelongUser() {
+    public Long getBelongUser() {
         return belongUser;
     }
 
-    public void setBelongUser(User belongUser) {
+    public void setBelongUser(Long belongUser) {
         this.belongUser = belongUser;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getProvice() {
