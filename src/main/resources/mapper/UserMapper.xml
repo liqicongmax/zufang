@@ -9,4 +9,7 @@
     <insert id="insert" parameterType="com.lqc.zufang.entity.User">
         insert into user(username,password,identity) values (#{username},#{password},#{identity})
     </insert>
+    <select id="getUserById" parameterType="Long" resultType="com.lqc.zufang.entity.User">
+        select username,identity from user where id=#{id}
+    </select>
 </mapper>
