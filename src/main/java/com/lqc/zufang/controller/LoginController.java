@@ -87,6 +87,12 @@ public class LoginController {
         Thread.sleep(3000);
         return "/login";
     }
+
+    /**
+     * 用户登录注销
+     * @param session
+     * @return
+     */
     @RequestMapping("/logout")
     public String logout(HttpSession session){
         session.removeAttribute("user");
