@@ -1,6 +1,9 @@
 package com.lqc.zufang.service;
 
 import com.lqc.zufang.entity.HouseResource;
+import com.lqc.zufang.entity.User;
+
+import java.util.List;
 
 /**
  * @author liqicong@myhexin.com
@@ -12,4 +15,6 @@ public interface HouseResourceService {
      * @param id
      */
     HouseResource getHouseResourceById(Long id);
+
+    List<HouseResource> getHouseResourceListLimitSix();
 }

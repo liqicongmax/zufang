@@ -32,64 +32,64 @@
 </div>
 <div th:include="include/header :: header"></div>
 <!--<header id="site-header">-->
-    <!--<div id="site-header-top">-->
-        <!--<div class="container">-->
-            <!--<div class="row">-->
-                <!--<div class="col-md-5">-->
-                    <!--<div class="clearfix">-->
-                        <!--<button class="btn btn-warning btn-lg header-btn visible-sm pull-right">List your Property for-->
-                            <!--Free-->
-                        <!--</button>-->
-                        <!--<p class="timing-in-header">Open Hours: Monday to Saturday - 8am to 6pm</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-7">-->
-                    <!--<div class="clearfix">-->
-                        <!--<div th:unless="${session.user}!=null">-->
-                            <!--<a th:href="@{/gotoLogin}">-->
-                                <!--<button class="btn btn-warning btn-lg header-btn hidden-sm">Login</button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div th:if="${session.user}!=null">-->
-                            <!--<a th:href="@{/user(id=${session.user.id})}">-->
-                                <!--<button class="btn btn-warning btn-lg header-btn hidden-sm" th:text="${session.user.username}"></button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-md-3">-->
-                <!--<figure id="site-logo">-->
-                    <!--<a th:href="@{/index}"><img src="assets/images/logo.png" alt="Logo"></a>-->
-                <!--</figure>-->
-            <!--</div>-->
-            <!--<div class="col-md-6 col-sm-8">-->
-                <!--<nav id="site-nav" class="nav navbar-default">-->
-                    <!--<ul class="nav navbar-nav">-->
-                        <!--<li><a th:href="@{/index}">Home</a></li>-->
-                        <!--<li><a href="property-listing.html">Listing</a></li>-->
-                        <!--<li><a href="single-property.html">Property</a></li>-->
-                        <!--<li><a href="gallery.html">Gallery</a></li>-->
-                        <!--<li><a href="contact.html">contact</a></li>-->
-                    <!--</ul>-->
-                <!--</nav>-->
-            <!--</div>-->
-            <!--<div class="col-md-3 col-sm-4">-->
-                <!--<div class="contact-in-header clearfix">-->
-                    <!--<i class="fa fa-mobile"></i>-->
-                    <!--<span>-->
-                        <!--Call Us Now-->
-                        <!--<br>-->
-                    <!--<strong>111 222 333 444</strong>-->
-                    <!--</span>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+<!--<div id="site-header-top">-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-md-5">-->
+<!--<div class="clearfix">-->
+<!--<button class="btn btn-warning btn-lg header-btn visible-sm pull-right">List your Property for-->
+<!--Free-->
+<!--</button>-->
+<!--<p class="timing-in-header">Open Hours: Monday to Saturday - 8am to 6pm</p>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-md-7">-->
+<!--<div class="clearfix">-->
+<!--<div th:unless="${session.user}!=null">-->
+<!--<a th:href="@{/gotoLogin}">-->
+<!--<button class="btn btn-warning btn-lg header-btn hidden-sm">Login</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--<div th:if="${session.user}!=null">-->
+<!--<a th:href="@{/user(id=${session.user.id})}">-->
+<!--<button class="btn btn-warning btn-lg header-btn hidden-sm" th:text="${session.user.username}"></button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-md-3">-->
+<!--<figure id="site-logo">-->
+<!--<a th:href="@{/index}"><img src="assets/images/logo.png" alt="Logo"></a>-->
+<!--</figure>-->
+<!--</div>-->
+<!--<div class="col-md-6 col-sm-8">-->
+<!--<nav id="site-nav" class="nav navbar-default">-->
+<!--<ul class="nav navbar-nav">-->
+<!--<li><a th:href="@{/index}">Home</a></li>-->
+<!--<li><a href="property-listing.html">Listing</a></li>-->
+<!--<li><a href="single-property.html">Property</a></li>-->
+<!--<li><a href="gallery.html">Gallery</a></li>-->
+<!--<li><a href="contact.html">contact</a></li>-->
+<!--</ul>-->
+<!--</nav>-->
+<!--</div>-->
+<!--<div class="col-md-3 col-sm-4">-->
+<!--<div class="contact-in-header clearfix">-->
+<!--<i class="fa fa-mobile"></i>-->
+<!--<span>-->
+<!--Call Us Now-->
+<!--<br>-->
+<!--<strong>111 222 333 444</strong>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <!--</header>-->
 
 <div class="main-slider-wrapper clearfix">
@@ -247,26 +247,61 @@
 <section id="home-property-listing">
     <header class="section-header home-section-header text-center">
         <div class="container">
-            <h2 class="wow slideInRight">Featured Properties</h2>
+            <h2 class="wow slideInRight">部分房间展示</h2>
             <p class="wow slideInLeft">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut <br>
                 labore et dolore magna aliquan ut enim ad minim veniam.</p>
         </div>
     </header>
     <div class="container">
-        <div class="row">
+        <div class="row" th:each="house:${list}">
+            <div th:if="${house[0]}!=null">
+                <div class="col-lg-4 col-sm-6 layout-item-wrap" style="float: left;">
+                    <article class="property layout-item clearfix">
+                        <figure class="feature-image">
+                            <a class="clearfix zoom" href="single-property.html"><img data-action="zoom"
+                                                                                      th:src="@{'/images/house/house' +${house[0].getId()}+ '.jpg'}"
+                                                                                      alt="Property Image"></a>
+                            <span class="btn btn-warning btn-sale">for sale</span>
+                        </figure>
+                        <div class="property-contents clearfix">
+                            <header class="property-header clearfix">
+                                <div class="pull-left">
+                                    <h6 class="entry-title"><a th:href="@{/house(id=${house[0].getId()})}">Guaranteed modern home</a></h6>
+                                    <span class="property-location"><i class="fa fa-map-marker"></i> 14 Tottenham Road, London</span>
+                                </div>
+                                <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$389.000">
+                                    <strong>$389.000</strong>
+                                </button>
+                            </header>
+                            <div class="property-meta clearfix">
+                                <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
+                                <span><i class="fa fa-bed"></i> 3 Beds</span>
+                                <span><i class="fa fa-bathtub"></i> 3 Baths</span>
+                                <span><i class="fa fa-cab"></i> Yes</span>
+                            </div>
+
+                            <div class="author-box clearfix">
+                                <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
+                                <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
+                                <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
             <div class="col-lg-4 col-sm-6 layout-item-wrap">
                 <article class="property layout-item clearfix">
                     <figure class="feature-image">
                         <a class="clearfix zoom" href="single-property.html"><img data-action="zoom"
-                                                                                  src="assets/images/property/1.jpg"
+                                                                                  th:src="@{'/images/house/house' +${house[1].getId()}+ '.jpg'}"
                                                                                   alt="Property Image"></a>
                         <span class="btn btn-warning btn-sale">for sale</span>
                     </figure>
                     <div class="property-contents clearfix">
                         <header class="property-header clearfix">
                             <div class="pull-left">
-                                <h6 class="entry-title"><a th:href="@{/house(id=1)}">Guaranteed modern home</a></h6>
+                                <h6 class="entry-title"><a th:href="@{/house(id=${house[1].getId()})}">Guaranteed modern home</a></h6>
                                 <span class="property-location"><i class="fa fa-map-marker"></i> 14 Tottenham Road, London</span>
                             </div>
                             <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$389.000"><strong>$389.000</strong>
@@ -278,12 +313,7 @@
                             <span><i class="fa fa-bathtub"></i> 3 Baths</span>
                             <span><i class="fa fa-cab"></i> Yes</span>
                         </div>
-                        <div class="contents clearfix">
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                sanctus est Lorem ipsum dolor sit amet. </p>
-                        </div>
+
                         <div class="author-box clearfix">
                             <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
                             <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
@@ -296,14 +326,14 @@
                 <article class="property layout-item clearfix">
                     <figure class="feature-image">
                         <a class="clearfix zoom" href="single-property.html"><img data-action="zoom"
-                                                                                  src="assets/images/property/2.jpg"
+                                                                                  th:src="@{'/images/house/house' +${house[2].getId()}+ '.jpg'}"
                                                                                   alt="Property Image"></a>
                         <span class="btn btn-warning btn-sale">for sale</span>
                     </figure>
                     <div class="property-contents clearfix">
                         <header class="property-header clearfix">
                             <div class="pull-left">
-                                <h6 class="entry-title"><a href="single-property.html">Guaranteed modern home</a></h6>
+                                <h6 class="entry-title"><a th:href="@{/house(id=${house[2].getId()})}">Guaranteed modern home</a></h6>
                                 <span class="property-location"><i class="fa fa-map-marker"></i> 14 Tottenham Road, London</span>
                             </div>
                             <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$389.000"><strong>$389.000</strong>
@@ -315,160 +345,7 @@
                             <span><i class="fa fa-bathtub"></i> 3 Baths</span>
                             <span><i class="fa fa-cab"></i> Yes</span>
                         </div>
-                        <div class="contents clearfix">
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                sanctus est Lorem ipsum dolor sit amet. </p>
-                        </div>
-                        <div class="author-box clearfix">
-                            <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
-                            <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                            <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-lg-4 col-sm-6 layout-item-wrap">
-                <article class="property layout-item clearfix">
-                    <figure class="feature-image">
-                        <a class="clearfix zoom" href="single-property.html"><img data-action="zoom"
-                                                                                  src="assets/images/property/3.jpg"
-                                                                                  alt="Property Image"></a>
-                        <span class="btn btn-warning btn-sale">for sale</span>
-                    </figure>
-                    <div class="property-contents clearfix">
-                        <header class="property-header clearfix">
-                            <div class="pull-left">
-                                <h6 class="entry-title"><a href="single-property.html">Guaranteed modern home</a></h6>
-                                <span class="property-location"><i class="fa fa-map-marker"></i> 14 Tottenham Road, London</span>
-                            </div>
-                            <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$389.000"><strong>$389.000</strong>
-                            </button>
-                        </header>
-                        <div class="property-meta clearfix">
-                            <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
-                            <span><i class="fa fa-bed"></i> 3 Beds</span>
-                            <span><i class="fa fa-bathtub"></i> 3 Baths</span>
-                            <span><i class="fa fa-cab"></i> Yes</span>
-                        </div>
-                        <div class="contents clearfix">
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                sanctus est Lorem ipsum dolor sit amet. </p>
-                        </div>
-                        <div class="author-box clearfix">
-                            <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
-                            <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                            <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-lg-4 col-sm-6 layout-item-wrap">
-                <article class="property layout-item clearfix">
-                    <figure class="feature-image">
-                        <a class="clearfix zoom" href="single-property.html"><img data-action="zoom"
-                                                                                  src="assets/images/property/4.jpg"
-                                                                                  alt="Property Image"></a>
-                        <span class="btn btn-warning btn-sale">for sale</span>
-                    </figure>
-                    <div class="property-contents clearfix">
-                        <header class="property-header clearfix">
-                            <div class="pull-left">
-                                <h6 class="entry-title"><a href="single-property.html">Guaranteed modern home</a></h6>
-                                <span class="property-location"><i class="fa fa-map-marker"></i> 14 Tottenham Road, London</span>
-                            </div>
-                            <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$389.000"><strong>$389.000</strong>
-                            </button>
-                        </header>
-                        <div class="property-meta clearfix">
-                            <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
-                            <span><i class="fa fa-bed"></i> 3 Beds</span>
-                            <span><i class="fa fa-bathtub"></i> 3 Baths</span>
-                            <span><i class="fa fa-cab"></i> Yes</span>
-                        </div>
-                        <div class="contents clearfix">
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                sanctus est Lorem ipsum dolor sit amet. </p>
-                        </div>
-                        <div class="author-box clearfix">
-                            <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
-                            <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                            <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-lg-4 col-sm-6 layout-item-wrap">
-                <article class="property layout-item clearfix">
-                    <figure class="feature-image">
-                        <a class="clearfix zoom" href="single-property.html"><img data-action="zoom"
-                                                                                  src="assets/images/property/5.jpg"
-                                                                                  alt="Property Image"></a>
-                        <span class="btn btn-warning btn-sale">for sale</span>
-                    </figure>
-                    <div class="property-contents clearfix">
-                        <header class="property-header clearfix">
-                            <div class="pull-left">
-                                <h6 class="entry-title"><a href="single-property.html">Guaranteed modern home</a></h6>
-                                <span class="property-location"><i class="fa fa-map-marker"></i> 14 Tottenham Road, London</span>
-                            </div>
-                            <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$389.000"><strong>$389.000</strong>
-                            </button>
-                        </header>
-                        <div class="property-meta clearfix">
-                            <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
-                            <span><i class="fa fa-bed"></i> 3 Beds</span>
-                            <span><i class="fa fa-bathtub"></i> 3 Baths</span>
-                            <span><i class="fa fa-cab"></i> Yes</span>
-                        </div>
-                        <div class="contents clearfix">
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                sanctus est Lorem ipsum dolor sit amet. </p>
-                        </div>
-                        <div class="author-box clearfix">
-                            <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
-                            <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                            <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-lg-4 col-sm-6 layout-item-wrap">
-                <article class="property layout-item clearfix">
-                    <figure class="feature-image">
-                        <a class="clearfix zoom" href="single-property.html"><img data-action="zoom"
-                                                                                  src="assets/images/property/6.jpg"
-                                                                                  alt="Property Image"></a>
-                        <span class="btn btn-warning btn-sale">for sale</span>
-                    </figure>
-                    <div class="property-contents clearfix">
-                        <header class="property-header clearfix">
-                            <div class="pull-left">
-                                <h6 class="entry-title"><a href="single-property.html">Guaranteed modern home</a></h6>
-                                <span class="property-location"><i class="fa fa-map-marker"></i> 14 Tottenham Road, London</span>
-                            </div>
-                            <button class="btn btn-default btn-price pull-right btn-3d" data-hover="$389.000"><strong>$389.000</strong>
-                            </button>
-                        </header>
-                        <div class="property-meta clearfix">
-                            <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
-                            <span><i class="fa fa-bed"></i> 3 Beds</span>
-                            <span><i class="fa fa-bathtub"></i> 3 Baths</span>
-                            <span><i class="fa fa-cab"></i> Yes</span>
-                        </div>
-                        <div class="contents clearfix">
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                                sanctus est Lorem ipsum dolor sit amet. </p>
-                        </div>
+
                         <div class="author-box clearfix">
                             <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
                             <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
@@ -480,6 +357,7 @@
         </div>
     </div>
 </section>
+
 <div th:include="include/header ::footer "></div>
 <a href="#top" id="scroll-top"><i class="fa fa-angle-up"></i></a>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

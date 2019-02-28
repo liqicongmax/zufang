@@ -12,11 +12,21 @@ public class User extends BaseDto {
      * 用户身份辨识
      */
     private String identity;
+    private String phonenumber;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getIdentity() {
         return identity;
     }
-    public String phonenumber;
+
 
     public String getPhonenumber() {
         return phonenumber;
@@ -41,6 +51,8 @@ public class User extends BaseDto {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", identity='" + identity + '\'' +
+                ", phonenumber='" + phonenumber + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 

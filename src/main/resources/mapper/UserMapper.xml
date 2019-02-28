@@ -4,12 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lqc.zufang.mapper.UserMapper">
     <select id="getUserByName" parameterType="String" resultType="com.lqc.zufang.entity.User">
-            select id,password from user where username=#{name}
+            select id,password,phonenumber,email from user where username=#{name}
     </select>
     <insert id="insert" parameterType="com.lqc.zufang.entity.User">
-        insert into user(username,password,identity) values (#{username},#{password},#{identity})
+        insert into user(username,password,phonenumber,email) values (#{username},#{password},#{phonenumber},#{email})
     </insert>
     <select id="getUserById" parameterType="Long" resultType="com.lqc.zufang.entity.User">
-        select username,identity from user where id=#{id}
+        select username,phonenumber,email from user where id=#{id}
     </select>
 </mapper>

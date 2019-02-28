@@ -6,4 +6,7 @@
     <select id="getHouseResourceById" parameterType="Long" resultType="com.lqc.zufang.entity.HouseResource">
         select * from house where id=#{id}
     </select>
+    <select id="getHouseResourceListLimitSix" resultType="com.lqc.zufang.entity.HouseResource">
+        select * from house order by collect limit 6
+    </select>
 </mapper>

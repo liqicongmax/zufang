@@ -1,10 +1,13 @@
 package com.lqc.zufang.service.impl;
 
 import com.lqc.zufang.entity.HouseResource;
+import com.lqc.zufang.entity.User;
 import com.lqc.zufang.mapper.HouseResourceMapper;
 import com.lqc.zufang.service.HouseResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author liqicong@myhexin.com
@@ -23,4 +26,11 @@ public class HouseResourceServiceImpl implements HouseResourceService {
     public HouseResource getHouseResourceById(Long id) {
         return houseResourceMapper.getHouseResourceById(id);
     }
+
+    @Override
+    public List<HouseResource> getHouseResourceListLimitSix() {
+        return houseResourceMapper.getHouseResourceListLimitSix();
+    }
+
+
 }

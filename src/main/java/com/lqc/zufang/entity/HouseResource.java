@@ -9,7 +9,7 @@ import com.lqc.zufang.base.BaseDto;
 public class HouseResource extends BaseDto {
 
     private static final long serialVersionUID = 8981586382428821589L;
-    private Long belongUser;//房东id
+    private Long belonguser;//房东id
     private String province;//省
     private String city;//市
     private String district;//区
@@ -27,6 +27,15 @@ public class HouseResource extends BaseDto {
     private Integer fan;
     private Integer sofa;
     private Integer singleWc;
+    private Integer collect;
+
+    public Integer getCollect() {
+        return collect;
+    }
+
+    public void setCollect(Integer collect) {
+        this.collect = collect;
+    }
 
     public Integer getAircondition() {
         return aircondition;
@@ -132,12 +141,12 @@ public class HouseResource extends BaseDto {
         this.description = description;
     }
 
-    public Long getBelongUser() {
-        return belongUser;
+    public Long getBelonguser() {
+        return belonguser;
     }
 
-    public void setBelongUser(Long belongUser) {
-        this.belongUser = belongUser;
+    public void setBelonguser(Long belongUser) {
+        this.belonguser = belongUser;
     }
 
     public Integer getStatus() {

@@ -69,19 +69,20 @@ public class LoginController {
      * 用户注册,接收表单提交内容
      * @param username
      * @param password
-     * @param identity
      * @throws Exception
      */
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String register(@RequestParam("register-username")String username,
                            @RequestParam("register-password")String password,
-                           @RequestParam(value = "identity",required = false)String identity)throws Exception{
+                           @RequestParam(value = "register-phonenumber",required = false)String phonenumber,
+                           @RequestParam("register-email")String email)throws Exception{
         User user=new User(username,password);
         if(loginService.getUser(user)){
             System.out.println("用户名已被占用");
             throw new Exception("用户名已被占用!");
         }
-        user.setIdentity(identity);
+        user.setPhonenumber(phonenumber);
+        user.setEmail(email);
         System.out.println(user.toString());
         loginService.insert(user);
         Thread.sleep(3000);
