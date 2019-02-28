@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+    <header id="site-header">
+        <div id="site-header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="clearfix">
+                            <button class="btn btn-warning btn-lg header-btn visible-sm pull-right">List your Property
+                                for
+                                Free
+                            </button>
+                            <p class="timing-in-header">Open Hours: Monday to Saturday - 8am to 6pm</p>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="clearfix">
+                            <div th:unless="${session.user}!=null">
+                                <a th:href="@{/gotoLogin}">
+                                    <button class="btn btn-warning btn-lg header-btn hidden-sm">Login</button>
+                                </a>
+                            </div>
+                            <div th:if="${session.user}!=null">
+                                <a th:href="@{/user(id=${session.user.id})}">
+                                    <button class="btn btn-warning btn-lg header-btn hidden-sm"
+                                            th:text="${session.user.username}"></button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <figure id="site-logo">
+                        <a th:href="@{/index}"><img src="assets/images/logo.png" alt="Logo"></a>
+                    </figure>
+                </div>
+                <div class="col-md-6 col-sm-8">
+                    <nav id="site-nav" class="nav navbar-default">
+                        <ul class="nav navbar-nav">
+                            <li><a th:href="@{/index}">Home</a></li>
+                            <li><a href="property-listing.html">Listing</a></li>
+                            <li><a href="single-property.html">Property</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="contact.html">contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="contact-in-header clearfix">
+                        <i class="fa fa-mobile"></i>
+                        <span>
+                        Call Us Now
+                        <br>
+                    <strong>111 222 333 444</strong>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<div th:fragment="footer">
+    <footer id="footer">
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <section class="widget about-widget clearfix">
+                            <h4 class="title hide">About Us</h4>
+                            <a class="footer-logo" href="#"><img src="assets/images/footer-logo.png" alt="Footer Logo"></a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</p>
+                            <ul class="social-icons clearfix">
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <section class="widget twitter-widget clearfix">
+                            <h4 class="title">Latest Tweets</h4>
+                            <div id="twitter-feeds" class="clearfix"></div>
+                        </section>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <section class="widget address-widget clearfix">
+                            <h4 class="title">OUR OFFICE</h4>
+                            <ul>
+                                <li><i class="fa fa-map-marker"></i> 4 Tottenham Road, London, England.</li>
+                                <li><i class="fa fa-phone"></i> (123) 45678910</li>
+                                <li><i class="fa fa-envelope"></i> huycoi.art@gmail.com</li>
+                                <li><i class="fa fa-fax"></i> +84 962 216 601</li>
+                                <li><i class="fa fa-clock-o"></i> Mon - Sat: 9:00 - 18:00</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer-bottom">
+            <div class="container">
+                <p class="copyright pull-left wow slideInRight">Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                <nav class="footer-nav pull-right wow slideInLeft">
+                    <ul>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+</div>
