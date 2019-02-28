@@ -10,7 +10,7 @@ public class HouseResource extends BaseDto {
 
     private static final long serialVersionUID = 8981586382428821589L;
     private Long belongUser;//房东id
-    private String provice;//省
+    private String province;//省
     private String city;//市
     private String district;//区
     private Integer price;//每月房租价格
@@ -21,6 +21,60 @@ public class HouseResource extends BaseDto {
     private Integer bathroom;//浴室个数
     private String type;//出租类型,首租或转租
     private Integer like;//收藏次数
+    private Integer aircondition;
+    private Integer tv;
+    private Integer kitchen;
+    private Integer fan;
+    private Integer sofa;
+    private Integer singleWc;
+
+    public Integer getAircondition() {
+        return aircondition;
+    }
+
+    public void setAircondition(Integer airCondition) {
+        this.aircondition = airCondition;
+    }
+
+    public Integer getTv() {
+        return tv;
+    }
+
+    public void setTv(Integer tv) {
+        this.tv = tv;
+    }
+
+    public Integer getKitchen() {
+        return kitchen;
+    }
+
+    public void setKitchen(Integer kitchen) {
+        this.kitchen = kitchen;
+    }
+
+    public Integer getFan() {
+        return fan;
+    }
+
+    public void setFan(Integer fan) {
+        this.fan = fan;
+    }
+
+    public Integer getSofa() {
+        return sofa;
+    }
+
+    public void setSofa(Integer sofa) {
+        this.sofa = sofa;
+    }
+
+    public Integer getSingleWc() {
+        return singleWc;
+    }
+
+    public void setSingleWc(Integer singleWc) {
+        this.singleWc = singleWc;
+    }
 
     public Integer getBeds() {
         return beds;
@@ -94,12 +148,12 @@ public class HouseResource extends BaseDto {
         this.status = status;
     }
 
-    public String getProvice() {
-        return provice;
+    public String getProvince() {
+        return province;
     }
 
-    public void setProvice(String provice) {
-        this.provice = provice;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getCity() {

@@ -16,6 +16,15 @@ public class User extends BaseDto {
     public String getIdentity() {
         return identity;
     }
+    public String phonenumber;
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 
     public void setIdentity(String identity) {
         this.identity = identity;

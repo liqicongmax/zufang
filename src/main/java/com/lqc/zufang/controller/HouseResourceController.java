@@ -28,6 +28,7 @@ public class HouseResourceController {
     @RequestMapping(value = "/house",method = RequestMethod.GET)
     public String getHouseResource(@RequestParam(value = "id",required = false)Long id, Model model){
         HouseResource houseResource=houseResourceService.getHouseResourceById(id);
+        model.addAttribute("houseResource",houseResource);
         return "admin/houseDetail";
     }
 }
