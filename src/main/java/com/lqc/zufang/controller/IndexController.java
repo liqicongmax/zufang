@@ -30,33 +30,23 @@ public class IndexController {
      * @return
      */
     @RequestMapping("/index")
-    public String index(Model model)throws InterruptedException {
+    public String index(Model model){
         List<HouseResource> houseResourceList = houseResourceService.getHouseResourceListLimitSix();
-        List<List<HouseResource>> list = new ArrayList<>();
+        List<List<HouseResource>> list = new ArrayList<>(2);
         List<HouseResource> temp = new ArrayList<>(3);
-        List<HouseResource> temp1=new ArrayList<>();
-        int i=0;
+        List<HouseResource> temp1 = new ArrayList<>(3);
+        int i = 0;
         for (HouseResource houseResource : houseResourceList) {
-//            i++;
-//            temp.add(houseResource);
-//            if (i==3){
-//                list.add(temp);
-//                System.out.println("tempsize:"+temp.size());
-//                temp.clear();
-//                i=0;
-//            }
             i++;
-            if (i<=3){
+            if (i <= 3) {
                 temp.add(houseResource);
-            }else{
+            } else {
                 temp1.add(houseResource);
             }
-
-
         }
         list.add(temp);
         list.add(temp1);
-        System.out.println("size:"+list.size());
+        System.out.println("size:" + list.size());
         System.out.println(list.get(0).get(0).getId());
         model.addAttribute("list", list);
         return "index";

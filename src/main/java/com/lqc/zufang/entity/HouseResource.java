@@ -13,6 +13,7 @@ public class HouseResource extends BaseDto {
     private String province;//省
     private String city;//市
     private String district;//区
+    private String place;//详细地址
     private Integer price;//每月房租价格
     private String description;//房源描述
     private Integer size;//房间大小
@@ -28,6 +29,14 @@ public class HouseResource extends BaseDto {
     private Integer sofa;
     private Integer singleWc;
     private Integer collect;
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
 
     public Integer getCollect() {
         return collect;

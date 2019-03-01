@@ -15,10 +15,9 @@ public class Test {
         temp1.add("a");
         list.add(temp1);
         System.out.println(list.get(0).get(0));
-        temp1.clear();
         temp1.add("s");
         list.add(temp1);
-        temp1.clear();
+
         System.out.println(list.get(0).get(0));
         System.out.println(list.size());
     }
