@@ -13,4 +13,11 @@ public interface UserService {
      * @return
      */
     User getUserById(Long id);
+
+    /**
+     * 通过username去数据库里找对应用户信息
+     * @param username
+     * @return
+     */
+    User getUserByUserName(String username);
 }

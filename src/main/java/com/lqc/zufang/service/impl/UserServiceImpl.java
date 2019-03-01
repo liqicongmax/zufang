@@ -24,4 +24,15 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Long id) {
         return userMapper.getUserById(id);
     }
+
+    /**
+     * 通过username去数据库里找对应用户信息
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public User getUserByUserName(String username) {
+        return userMapper.getUserByName(username);
+    }
 }

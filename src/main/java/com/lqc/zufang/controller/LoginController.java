@@ -4,6 +4,7 @@ import com.lqc.zufang.base.BaseReturnDto;
 import com.lqc.zufang.constant.Identity;
 import com.lqc.zufang.entity.User;
 import com.lqc.zufang.service.LoginService;
+import com.lqc.zufang.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     LoginService loginService;
+    @Autowired
+    UserService userService;
     @RequestMapping("/gotoLogin")
     public String loginIndex(){
         return "login";
@@ -45,6 +48,8 @@ public class LoginController {
                         HttpSession session) {
         BaseReturnDto<Boolean> brd = new BaseReturnDto<>();
         User user = new User(username, password);
+
+
         System.out.println(username+""+password);
         try {
             if (loginService.getUser(user)) {
@@ -59,6 +64,8 @@ public class LoginController {
             brd = new BaseReturnDto<>(-1, "fail");
             logger.error("failed to login");
         }
+        user=userService.getUserByUserName(username);
+        user.setUsername(username);
         model.addAttribute("result", brd);
         session.setAttribute("user",user);
         return "redirect:index";
