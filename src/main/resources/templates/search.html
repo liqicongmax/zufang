@@ -196,112 +196,46 @@
     </header>
     <div class="container">
         <div class="row" th:each="house:${list}">
-            <div th:if="${house[0]}!=null">
-                <div class="col-lg-4 col-sm-6 layout-item-wrap" style="float: left;">
-                    <article class="property layout-item clearfix">
-                        <figure class="feature-image">
-                            <a class="clearfix zoom"><img data-action="zoom"
-                                                          th:src="@{'/images/house/house' +${house[0].getId()}+ '.jpg'}"
-                                                          alt="Property Image"></a>
-                            <span class="btn btn-warning btn-sale">for sale</span>
-                        </figure>
-                        <div class="property-contents clearfix">
-                            <header class="property-header clearfix">
-                                <div class="pull-left">
-                                    <h6 class="entry-title"><a th:href="@{/house(id=${house[0].getId()})}">Guaranteed
-                                        modern home</a></h6>
-                                    <span class="property-location">
-                                        <i class="fa fa-map-marker" th:text="${house[0].province}+'省'+${house[0].city}+'市'+${house[0].district+'区'}+${house[0].place}"></i>
+            <div th:each="houseDetail:${house}">
+                <div th:if="${houseDetail}!=null">
+                    <div class="col-lg-4 col-sm-6 layout-item-wrap" style="float: left;">
+                        <article class="property layout-item clearfix">
+                            <figure class="feature-image">
+                                <a class="clearfix zoom"><img data-action="zoom"
+                                                              th:src="@{'/images/house/house' +${houseDetail.getId()}+ '.jpg'}"
+                                                              alt="Property Image"></a>
+                                <span class="btn btn-warning btn-sale">for sale</span>
+                            </figure>
+                            <div class="property-contents clearfix">
+                                <header class="property-header clearfix">
+                                    <div class="pull-left">
+                                        <h6 class="entry-title"><a th:href="@{/house(id=${houseDetail.getId()})}">Guaranteed
+                                            modern home</a></h6>
+                                        <span class="property-location">
+                                        <i class="fa fa-map-marker"
+                                           th:text="${houseDetail.province}+'省'+${houseDetail.city}+'市'+${houseDetail.district+'区'}+${houseDetail.place}"></i>
                                     </span>
+                                    </div>
+                                    <button class="btn btn-default btn-price pull-right btn-3d" data-hover="月租">
+                                        <strong th:text="'¥'+${houseDetail.getPrice()}"></strong>
+                                    </button>
+                                </header>
+                                <div class="property-meta clearfix">
+                                    <span><i class="fa fa-arrows-alt" th:text="${houseDetail.size}+'㎡'"></i></span>
+                                    <span><i class="fa fa-bed" th:text="${houseDetail.beds}+'beds'"></i></span>
+                                    <span><i class="fa fa-bathtub" th:text="${houseDetail.bathroom}+'baths'"></i></span>
                                 </div>
-                                <button class="btn btn-default btn-price pull-right btn-3d" data-hover="月租">
-                                    <strong th:text="'¥'+${house[0].getPrice()}"></strong>
-                                </button>
-                            </header>
-                            <div class="property-meta clearfix">
-                                <span><i class="fa fa-arrows-alt" th:text="${house[0].size}+'㎡'"></i></span>
-                                <span><i class="fa fa-bed" th:text="${house[0].beds}+'beds'"></i></span>
-                                <span><i class="fa fa-bathtub" th:text="${house[0].bathroom}+'baths'"></i></span>
-                            </div>
 
-                            <div class="author-box clearfix">
-                                <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
-                                <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                                <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
+                                <div class="author-box clearfix">
+                                    <a href="#" class="author-img"><img src="assets/images/agents/1.jpg"
+                                                                        alt="Agent Image"></a>
+                                    <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
+                                    <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
+                                </div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 layout-item-wrap">
-                <article class="property layout-item clearfix">
-                    <figure class="feature-image">
-                        <a class="clearfix zoom"><img data-action="zoom"
-                                                      th:src="@{'/images/house/house' +${house[1].getId()}+ '.jpg'}"
-                                                      alt="Property Image"></a>
-                        <span class="btn btn-warning btn-sale">for sale</span>
-                    </figure>
-                    <div class="property-contents clearfix">
-                        <header class="property-header clearfix">
-                            <div class="pull-left">
-                                <h6 class="entry-title"><a th:href="@{/house(id=${house[1].getId()})}">Guaranteed modern
-                                    home</a></h6>
-                                <span class="property-location">
-                                        <i class="fa fa-map-marker" th:text="${house[1].province}+'省'+${house[1].city}+'市'+${house[1].district+'区'}+${house[1].place}"></i>
-                                    </span>
-                            </div>
-                            <button class="btn btn-default btn-price pull-right btn-3d" data-hover="月租">
-                                <strong th:text="'¥'+${house[1].getPrice()}"></strong>
-                            </button>
-                        </header>
-                        <div class="property-meta clearfix">
-                            <span><i class="fa fa-arrows-alt" th:text="${house[1].size}+'㎡'"></i></span>
-                            <span><i class="fa fa-bed" th:text="${house[1].beds}+'beds'"></i></span>
-                            <span><i class="fa fa-bathtub" th:text="${house[1].bathroom}+'baths'"></i></span>
-                        </div>
-
-                        <div class="author-box clearfix">
-                            <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
-                            <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                            <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-lg-4 col-sm-6 layout-item-wrap">
-                <article class="property layout-item clearfix">
-                    <figure class="feature-image">
-                        <a class="clearfix zoom"><img data-action="zoom"
-                                                      th:src="@{'/images/house/house' +${house[2].getId()}+ '.jpg'}"
-                                                      alt="Property Image"></a>
-                        <span class="btn btn-warning btn-sale">for sale</span>
-                    </figure>
-                    <div class="property-contents clearfix">
-                        <header class="property-header clearfix">
-                            <div class="pull-left">
-                                <h6 class="entry-title"><a th:href="@{/house(id=${house[2].getId()})}">Guaranteed modern
-                                    home</a></h6>
-                                <span class="property-location">
-                                        <i class="fa fa-map-marker" th:text="${house[2].province}+'省'+${house[2].city}+'市'+${house[2].district+'区'}+${house[2].place}"></i>
-                                    </span>
-                            </div>
-                            <button class="btn btn-default btn-price pull-right btn-3d" data-hover="月租">
-                                <strong th:text="'¥'+${house[2].getPrice()}"></strong>
-                            </button>
-                        </header>
-                        <div class="property-meta clearfix">
-                            <span><i class="fa fa-arrows-alt" th:text="${house[2].size}+'㎡'"></i></span>
-                            <span><i class="fa fa-bed" th:text="${house[2].beds}+'beds'"></i></span>
-                            <span><i class="fa fa-bathtub" th:text="${house[2].bathroom}+'baths'"></i></span>
-                        </div>
-
-                        <div class="author-box clearfix">
-                            <a href="#" class="author-img"><img src="assets/images/agents/1.jpg" alt="Agent Image"></a>
-                            <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                            <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
-                        </div>
-                    </div>
-                </article>
             </div>
         </div>
     </div>
