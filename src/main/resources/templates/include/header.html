@@ -73,7 +73,9 @@
                         <section class="widget about-widget clearfix">
                             <h4 class="title hide">About Us</h4>
                             <a class="footer-logo" href="#"><img src="assets/images/footer-logo.png" alt="Footer Logo"></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi</p>
                             <ul class="social-icons clearfix">
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -115,4 +117,67 @@
             </div>
         </div>
     </footer>
+</div>
+<div id="advance-search" class="main-page clearfix" th:fragment="search">
+
+    <div class="container">
+        <button class="btn top-btn">Find Your Place</button>
+        <form th:action="@{/search}" id="adv-search-form" name="form" onsubmit="return beforeSubmit(this);"
+              class="clearfix">
+            <fieldset>
+                <input type="text" placeholder="省份" id="province" name="province">
+                <input type="text" placeholder="城市" id="city" name="city">
+                <input type="text" placeholder="地区" id="district" name="district">
+
+                <select id="property-type" name="type">
+                    <option>付款方式</option>
+                    <option value="yuefu">月付</option>
+                </select>
+                <select name="low" id="low">
+                    <option value="any" selected="selected">Min Price</option>
+                    <option value="500">¥500</option>
+                    <option value="1000">¥1000</option>
+                    <option value="2000">¥2000</option>
+                    <option value="3000">¥3000</option>
+                </select>
+                <select name="high" id="high">
+                    <option value="any" selected="selected">Max Price</option>
+                    <option value="1000">¥1000</option>
+                    <option value="2000">¥2000</option>
+                    <option value="3000">¥3000</option>
+                </select>
+            </fieldset>
+            <button type="submit" class="btn btn-default btn-lg text-center">Search <br class="hidden-sm hidden-xs">
+                Property
+            </button>
+        </form>
+    </div>
+    <!--<script>-->
+    <!--function beforeSubmit(form) {-->
+    <!--if (document.form.province.value == '') {-->
+    <!--alert('省份名不能为空');-->
+    <!--form.province.focus();-->
+    <!--return false;-->
+    <!--}-->
+    <!--if (form.city.value == '') {-->
+    <!--alert('城市名不能为空');-->
+    <!--form.city.focus();-->
+    <!--return false;-->
+    <!--}-->
+    <!--if (form.district.value == '') {-->
+    <!--alert('地区名不能为空');-->
+    <!--form.district.focus();-->
+    <!--return false;-->
+    <!--}-->
+    <!--var low=document.getElementById("low");-->
+    <!--var high=document.getElementById("high");-->
+    <!--if(low.options[low.selectedIndex].value!="any"&&high.options[high.selectedIndex].value!="any"){-->
+    <!--if(low.options[low.selectedIndex].value>high.options[high.selectedIndex].value){-->
+    <!--alert("最低价不能高于最高价");-->
+    <!--return false-->
+    <!--}-->
+    <!--}-->
+    <!--return true;-->
+    <!--}-->
+    <!--</script>-->
 </div>

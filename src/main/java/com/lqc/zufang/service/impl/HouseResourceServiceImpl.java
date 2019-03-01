@@ -1,6 +1,7 @@
 package com.lqc.zufang.service.impl;
 
 import com.lqc.zufang.entity.HouseResource;
+import com.lqc.zufang.entity.HouseResourceQuery;
 import com.lqc.zufang.entity.User;
 import com.lqc.zufang.mapper.HouseResourceMapper;
 import com.lqc.zufang.service.HouseResourceService;
@@ -30,6 +31,12 @@ public class HouseResourceServiceImpl implements HouseResourceService {
     @Override
     public List<HouseResource> getHouseResourceListLimitSix() {
         return houseResourceMapper.getHouseResourceListLimitSix();
+    }
+
+    @Override
+    public List<HouseResource> query(HouseResourceQuery query) {
+        return houseResourceMapper.query(query);
+
     }
 
 

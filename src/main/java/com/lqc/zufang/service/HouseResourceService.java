@@ -1,6 +1,7 @@
 package com.lqc.zufang.service;
 
 import com.lqc.zufang.entity.HouseResource;
+import com.lqc.zufang.entity.HouseResourceQuery;
 import com.lqc.zufang.entity.User;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface HouseResourceService {
     HouseResource getHouseResourceById(Long id);
 
     List<HouseResource> getHouseResourceListLimitSix();
+
+    List<HouseResource> query(HouseResourceQuery query);
 }

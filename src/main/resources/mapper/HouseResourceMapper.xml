@@ -9,4 +9,16 @@
     <select id="getHouseResourceListLimitSix" resultType="com.lqc.zufang.entity.HouseResource">
         select * from house order by collect limit 6
     </select>
+    <select id="query" parameterType="com.lqc.zufang.entity.HouseResourceQuery" resultType="com.lqc.zufang.entity.HouseResource">
+        select * from house where
+        province=#{province}
+        and city=#{city}
+        and district=#{district}
+        <if test="low!=null">
+            and price> #{low}
+        </if>
+        <if test="high!=null">
+            and price &lt; #{high}
+        </if>
+    </select>
 </mapper>

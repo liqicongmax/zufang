@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author liqicong@myhexin.com
  * @date 2019/2/27 17:02
@@ -37,5 +39,9 @@ public class HouseResourceController {
         User landlord=userService.getUserById(houseResource.getBelonguser());
         model.addAttribute("landlord",landlord);
         return "admin/houseDetail";
+    }
+    @RequestMapping("/collect")
+    public void collect(HttpSession session,@RequestParam("id")String id){
+
     }
 }

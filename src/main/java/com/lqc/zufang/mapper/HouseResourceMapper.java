@@ -1,6 +1,7 @@
 package com.lqc.zufang.mapper;
 
 import com.lqc.zufang.entity.HouseResource;
+import com.lqc.zufang.entity.HouseResourceQuery;
 import com.lqc.zufang.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,4 +15,5 @@ import java.util.List;
 public interface HouseResourceMapper {
     HouseResource getHouseResourceById(Long id);
     List<HouseResource> getHouseResourceListLimitSix();
+    List<HouseResource> query(HouseResourceQuery query);
 }
