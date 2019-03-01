@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-7">
                 <section class="property-meta-wrapper common">
-                    <h3 class="entry-title">房间信息</h3><button class="btn top-btn">收藏</button>
+                    <h3 class="entry-title">房间信息</h3><button class="btn top-btn"><a th:href="@{/collect(id=${houseResource.id})}">收藏</a></button>
                     <div class="property-single-meta">
                         <ul class="clearfix">
                             <li><span>房间大小 :</span> <p th:text="${houseResource.size}"> m²</p> </li>

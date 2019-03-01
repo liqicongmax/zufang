@@ -1,5 +1,6 @@
 package com.lqc.zufang.controller;
 
+import com.lqc.zufang.entity.Collect;
 import com.lqc.zufang.entity.HouseResource;
 import com.lqc.zufang.entity.User;
 import com.lqc.zufang.service.HouseResourceService;
@@ -40,8 +41,21 @@ public class HouseResourceController {
         model.addAttribute("landlord",landlord);
         return "admin/houseDetail";
     }
-    @RequestMapping("/collect")
-    public void collect(HttpSession session,@RequestParam("id")String id){
 
+    /**
+     * 添加房源到用户的收藏
+     * @param session
+     * @param id 传过来的房源id
+     */
+    @RequestMapping("/collect")
+    public void collect(HttpSession session,
+                        @RequestParam("id")String id){
+        User user=(User)session.getAttribute("user");
+        if(user!=null){
+            Collect collect=new Collect();
+            collect.setUserId(user.getId());
+            collect.setHouseId(Long.valueOf(id));
+            houseResourceService.insertCollect(collect);
+        }
     }
 }

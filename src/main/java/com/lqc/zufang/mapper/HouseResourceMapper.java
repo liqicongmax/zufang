@@ -1,5 +1,6 @@
 package com.lqc.zufang.mapper;
 
+import com.lqc.zufang.entity.Collect;
 import com.lqc.zufang.entity.HouseResource;
 import com.lqc.zufang.entity.HouseResourceQuery;
 import com.lqc.zufang.entity.User;
@@ -16,4 +17,5 @@ public interface HouseResourceMapper {
     HouseResource getHouseResourceById(Long id);
     List<HouseResource> getHouseResourceListLimitSix();
     List<HouseResource> query(HouseResourceQuery query);
+    void insertCollect(Collect collect);
 }

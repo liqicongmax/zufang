@@ -1,5 +1,6 @@
 package com.lqc.zufang.service.impl;
 
+import com.lqc.zufang.entity.Collect;
 import com.lqc.zufang.entity.HouseResource;
 import com.lqc.zufang.entity.HouseResourceQuery;
 import com.lqc.zufang.entity.User;
@@ -37,6 +38,11 @@ public class HouseResourceServiceImpl implements HouseResourceService {
     public List<HouseResource> query(HouseResourceQuery query) {
         return houseResourceMapper.query(query);
 
+    }
+
+    @Override
+    public void insertCollect(Collect collect) {
+        houseResourceMapper.insertCollect(collect);
     }
 
 

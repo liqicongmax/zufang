@@ -21,4 +21,7 @@
             and price &lt; #{high}
         </if>
     </select>
+    <insert id="insertCollect" parameterType="com.lqc.zufang.entity.Collect">
+        insert into collect(userid, houseid) values(#{userId},#{houseId})
+    </insert>
 </mapper>
