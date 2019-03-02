@@ -44,7 +44,7 @@
                 <section class="property-meta-wrapper common">
                     <h3 class="entry-title">房间信息</h3><button class="btn top-btn"><a th:href="@{/collect(id=${houseResource.id})}">收藏</a></button>
                     <div class="property-single-meta">
-                        <ul class="clearfix">
+                        <ul class="clearfix" th:i>
                             <li><span>房间大小 :</span> <p th:text="${houseResource.size}"> m²</p> </li>
                             <li><span>省 :</span> <p th:text="${houseResource.province}"></p></li>
                             <li><span>市 :</span> <p th:text="${houseResource.city}"></p></li>
@@ -170,23 +170,6 @@
                             </div>
                         </div>
                     </section>
-                    <!--<section class="widget property-taxonomies clearfix">-->
-                        <!--<h5 class="title">Recent Status</h5>-->
-                        <!--<ul class="clearfix">-->
-                            <!--<li><a href="#">For Rent </a><span class="pull-right">29</span></li>-->
-                            <!--<li><a href="#">For Sale </a><span class="pull-right">35</span></li>-->
-                            <!--<li><a href="#">Office For Rent </a><span class="pull-right">07</span></li>-->
-                        <!--</ul>-->
-                    <!--</section>-->
-                    <!--<section class="widget property-taxonomies clearfix">-->
-                        <!--<h5 class="title">Recent Type</h5>-->
-                        <!--<ul class="clearfix">-->
-                            <!--<li><a href="#">Apartment </a><span class="pull-right">30</span></li>-->
-                            <!--<li><a href="#">Loft </a><span class="pull-right">05</span></li>-->
-                            <!--<li><a href="#">Single Family Home </a><span class="pull-right">28</span></li>-->
-                            <!--<li><a href="#">Vila </a><span class="pull-right">37</span></li>-->
-                        <!--</ul>-->
-                    <!--</section>-->
                 </div>
             </div>
         </div>

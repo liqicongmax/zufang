@@ -3,6 +3,8 @@ package com.lqc.zufang.mapper;
 import com.lqc.zufang.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
     /**
@@ -23,4 +25,11 @@ public interface UserMapper {
      * @return
      */
     User getUserById(Long id);
+
+    /**
+     * 通过用户名来获取用户收藏的所有房源
+     * @param username
+     * @return
+     */
+    List<Long> getHouseIdsByUser(String username);
 }

@@ -12,4 +12,7 @@
     <select id="getUserById" parameterType="Long" resultType="com.lqc.zufang.entity.User">
         select username,phonenumber,email from user where id=#{id}
     </select>
+    <select id="getHouseIdsByUser" parameterType="String" resultType="Long">
+        select c.houseid from collect c,user u where c.userid=u.id and u.username=#{username}
+    </select>
 </mapper>

@@ -6,6 +6,8 @@ import com.lqc.zufang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author liqicong@myhexin.com
  * @date 2019/2/27 11:17
@@ -34,5 +36,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUserName(String username) {
         return userMapper.getUserByName(username);
+    }
+
+    /**
+     * 通过用户名来获取该用户收藏的所有房源
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public List<Long> getHouseIdsByUser(String username) {
+        return userMapper.getHouseIdsByUser(username);
     }
 }

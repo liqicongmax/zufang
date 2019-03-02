@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author liqicong@myhexin.com
@@ -66,6 +67,8 @@ public class LoginController {
         }
         user=userService.getUserByUserName(username);
         user.setUsername(username);
+        List<Long> houseIds=userService.getHouseIdsByUser(username);
+        user.setHouseIds(houseIds);
         model.addAttribute("result", brd);
         session.setAttribute("user",user);
         return "redirect:index";

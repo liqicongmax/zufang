@@ -2,6 +2,8 @@ package com.lqc.zufang.entity;
 
 import com.lqc.zufang.base.BaseDto;
 
+import java.util.List;
+
 
 public class User extends BaseDto {
     private static final long serialVersionUID = -7982680044418363713L;
@@ -14,6 +16,15 @@ public class User extends BaseDto {
     private String identity;
     private String phonenumber;
     private String email;
+    List<Long> houseIds;//用户收藏的所有房源的id
+
+    public List<Long> getHouseIds() {
+        return houseIds;
+    }
+
+    public void setHouseIds(List<Long> houseIds) {
+        this.houseIds = houseIds;
+    }
 
     public String getEmail() {
         return email;

@@ -2,6 +2,8 @@ package com.lqc.zufang.service;
 
 import com.lqc.zufang.entity.User;
 
+import java.util.List;
+
 /**
  * @author liqicong@myhexin.com
  * @date 2019/2/27 11:16
@@ -20,4 +22,11 @@ public interface UserService {
      * @return
      */
     User getUserByUserName(String username);
+
+    /**
+     * 通过用户名来获取该用户收藏的所有房源
+     * @param username
+     * @return
+     */
+    List<Long> getHouseIdsByUser(String username);
 }
