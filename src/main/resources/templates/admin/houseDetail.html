@@ -42,16 +42,25 @@
         <div class="row">
             <div class="col-lg-8 col-md-7">
                 <section class="property-meta-wrapper common">
-                    <h3 class="entry-title">房间信息</h3><button class="btn top-btn"><a th:href="@{/collect(id=${houseResource.id})}">收藏</a></button>
+                    <h3 class="entry-title">房间信息</h3>
+                    <button th:if="${collect}=='uncollected'" class="btn top-btn"><a th:href="@{/collect(id=${houseResource.id})}">收藏</a></button>
+                    <button th:if="${collect}=='collected'" class="btn top-btn">已收藏</button>
                     <div class="property-single-meta">
                         <ul class="clearfix" th:i>
-                            <li><span>房间大小 :</span> <p th:text="${houseResource.size}"> m²</p> </li>
-                            <li><span>省 :</span> <p th:text="${houseResource.province}"></p></li>
-                            <li><span>市 :</span> <p th:text="${houseResource.city}"></p></li>
-                            <li><span>区 :</span> <p th:text="${houseResource.district}"></p></li>
-                            <li><span>床位 :</span> <p th:text="${houseResource.beds}"></p></li>
-                            <li><span>厕所 :</span> <p th:text="${houseResource.bathroom}"></p></li>
-                            <li><span>Price(¥) :</span> <p th:text="${houseResource.price}"></p></li>
+                            <li><span>房间大小 :</span>
+                                <p th:text="${houseResource.size}"> m²</p></li>
+                            <li><span>省 :</span>
+                                <p th:text="${houseResource.province}"></p></li>
+                            <li><span>市 :</span>
+                                <p th:text="${houseResource.city}"></p></li>
+                            <li><span>区 :</span>
+                                <p th:text="${houseResource.district}"></p></li>
+                            <li><span>床位 :</span>
+                                <p th:text="${houseResource.beds}"></p></li>
+                            <li><span>厕所 :</span>
+                                <p th:text="${houseResource.bathroom}"></p></li>
+                            <li><span>Price(¥) :</span>
+                                <p th:text="${houseResource.price}"></p></li>
                         </ul>
                     </div>
                 </section>
@@ -109,8 +118,10 @@
                             <div class="widget address-widget clearfix">
                                 <ul>
                                     <!--<li><i class="fa fa-map-marker"></i> 4 Tottenham Road, London, England.</li>-->
-                                    <li><i class="fa fa-phone"></i><p th:text="${landlord.phonenumber}"></p></li>
-                                    <li><i class="fa fa-envelope"></i> <p th:text="${landlord.email}"></p></li>
+                                    <li><i class="fa fa-phone"></i>
+                                        <p th:text="${landlord.phonenumber}"></p></li>
+                                    <li><i class="fa fa-envelope"></i>
+                                        <p th:text="${landlord.email}"></p></li>
                                     <li><i class="fa fa-clock-o"></i> Mon - Sat: 9:00 - 18:00</li>
                                 </ul>
                             </div>
@@ -132,7 +143,7 @@
                                 <h6 class="entry-title"><a href="single-property.html">Luxury family home</a></h6>
                                 <span class="btn-price">$389.000</span>
                                 <div class="property-meta clearfix">
-                                    <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
+                                    <span><i class="fa fa-arrows-alt"></i> 3060 </span>
                                     <span><i class="fa fa-bed"></i> 3 Beds</span>
                                     <span><i class="fa fa-bathtub"></i> 3 Baths</span>
                                     <span><i class="fa fa-cab"></i> Yes</span>
@@ -147,7 +158,7 @@
                                 <h6 class="entry-title"><a href="single-property.html">Luxury family home</a></h6>
                                 <span class="btn-price">$389.000</span>
                                 <div class="property-meta clearfix">
-                                    <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
+                                    <span><i class="fa fa-arrows-alt"></i> 3060 </span>
                                     <span><i class="fa fa-bed"></i> 3 Beds</span>
                                     <span><i class="fa fa-bathtub"></i> 3 Baths</span>
                                     <span><i class="fa fa-cab"></i> Yes</span>
@@ -162,7 +173,7 @@
                                 <h6 class="entry-title"><a href="single-property.html">Luxury family home</a></h6>
                                 <span class="btn-price">$389.000</span>
                                 <div class="property-meta clearfix">
-                                    <span><i class="fa fa-arrows-alt"></i> 3060 SqFt</span>
+                                    <span><i class="fa fa-arrows-alt"></i> 3060 </span>
                                     <span><i class="fa fa-bed"></i> 3 Beds</span>
                                     <span><i class="fa fa-bathtub"></i> 3 Baths</span>
                                     <span><i class="fa fa-cab"></i> Yes</span>

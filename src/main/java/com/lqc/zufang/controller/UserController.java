@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author liqicong@myhexin.com
  * @date 2019/2/27 11:08
@@ -21,10 +23,23 @@ public class UserController {
     UserService userService;
 
     @RequestMapping("/user")
-    public String userCenter(@RequestParam("id")Long id,Model model){
-        User user=userService.getUserById(id);
-        model.addAttribute("user",user);
+    public String userCenter(@RequestParam("id") Long id, Model model) {
+        User user = userService.getUserById(id);
+        model.addAttribute("user", user);
         return "/admin/user";
+    }
+
+    /**
+     * 用户取消收藏
+     * @param id 房源id
+     * @param session
+     * @return
+     */
+    @RequestMapping("/cancelcollect")
+    public String cancelcollect(@RequestParam("id") Long id, HttpSession session) {
+        User user=(User)session.getAttribute("user");
+        userService.cancelcollect(id,user.getId());
+        return "redirect:user";
     }
 
 }

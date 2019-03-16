@@ -29,4 +29,11 @@ public interface UserService {
      * @return
      */
     List<Long> getHouseIdsByUser(String username);
+
+    /**
+     * 取消收藏
+     * @param id
+     * @param userid
+     */
+    void cancelcollect(Long id,Long userid);
 }

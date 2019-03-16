@@ -24,4 +24,7 @@
     <insert id="insertCollect" parameterType="com.lqc.zufang.entity.Collect">
         insert into collect(userid, houseid) values(#{userId},#{houseId})
     </insert>
+    <select id="getCollectListByUserId" parameterType="Long" resultType="Long">
+        select houseid  from collect where userid=#{id}
+    </select>
 </mapper>

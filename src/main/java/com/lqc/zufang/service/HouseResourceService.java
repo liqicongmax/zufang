@@ -22,5 +22,5 @@ public interface HouseResourceService {
 
     List<HouseResource> query(HouseResourceQuery query);
 
-    void insertCollect(Collect collect);
+
 }

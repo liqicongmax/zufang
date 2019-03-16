@@ -48,4 +48,15 @@ public class UserServiceImpl implements UserService {
     public List<Long> getHouseIdsByUser(String username) {
         return userMapper.getHouseIdsByUser(username);
     }
+
+    /**
+     * 取消收藏
+     *
+     * @param id
+     * @param userid
+     */
+    @Override
+    public void cancelcollect(Long id, Long userid) {
+        userMapper.cancelcollect(id,userid);
+    }
 }

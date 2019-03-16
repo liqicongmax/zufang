@@ -40,10 +40,5 @@ public class HouseResourceServiceImpl implements HouseResourceService {
 
     }
 
-    @Override
-    public void insertCollect(Collect collect) {
-        houseResourceMapper.insertCollect(collect);
-    }
-
 
 }

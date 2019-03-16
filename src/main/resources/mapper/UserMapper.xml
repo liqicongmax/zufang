@@ -15,4 +15,7 @@
     <select id="getHouseIdsByUser" parameterType="String" resultType="Long">
         select c.houseid from collect c,user u where c.userid=u.id and u.username=#{username}
     </select>
+    <delete id="cancelcollect">
+        delete from collect where userid=#{userid} and houseid=#{collectid}
+    </delete>
 </mapper>
