@@ -27,6 +27,11 @@
                                             th:text="${session.user.username}"></button>
                                 </a>
                             </div>
+                            <div th:if="${session.user}!=null">
+                                <a th:href="@{/logout}">
+                                    <button class="btn btn-warning btn-lg header-btn hidden-sm">注销</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,7 +61,7 @@
                         <span>
                         Call Us Now
                         <br>
-                    <strong>111 222 333 444</strong>
+                    <strong>157 5785 0238</strong>
                     </span>
                     </div>
                 </div>
@@ -71,11 +76,9 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6">
                         <section class="widget about-widget clearfix">
-                            <h4 class="title hide">About Us</h4>
+                            <h4 class="title hide">关于我们</h4>
                             <a class="footer-logo" href="#"><img src="assets/images/footer-logo.png" alt="Footer Logo"></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi</p>
+                            <p>致力于为即将毕业的大学生提供方便的租房平台</p>
                             <ul class="social-icons clearfix">
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -86,18 +89,17 @@
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <section class="widget twitter-widget clearfix">
-                            <h4 class="title">Latest Tweets</h4>
+                            <h4 class="title">上次更新</h4>
                             <div id="twitter-feeds" class="clearfix"></div>
                         </section>
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <section class="widget address-widget clearfix">
-                            <h4 class="title">OUR OFFICE</h4>
+                            <h4 class="title">联系我们</h4>
                             <ul>
-                                <li><i class="fa fa-map-marker"></i> 4 Tottenham Road, London, England.</li>
-                                <li><i class="fa fa-phone"></i> (123) 45678910</li>
-                                <li><i class="fa fa-envelope"></i> huycoi.art@gmail.com</li>
-                                <li><i class="fa fa-fax"></i> +84 962 216 601</li>
+                                <li><i class="fa fa-map-marker"></i>浙江省杭州市下沙中国计量大学</li>
+                                <li><i class="fa fa-phone"></i> 15757850238</li>
+                                <li><i class="fa fa-envelope"></i> liqicong@myhexin.com</li>
                                 <li><i class="fa fa-clock-o"></i> Mon - Sat: 9:00 - 18:00</li>
                             </ul>
                         </section>
@@ -105,17 +107,17 @@
                 </div>
             </div>
         </div>
-        <div class="site-footer-bottom">
-            <div class="container">
-                <nav class="footer-nav pull-right wow slideInLeft">
-                    <ul>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <!--<div class="site-footer-bottom">-->
+            <!--<div class="container">-->
+                <!--<nav class="footer-nav pull-right wow slideInLeft">-->
+                    <!--<ul>-->
+                        <!--<li><a href="#">Terms & Conditions</a></li>-->
+                        <!--<li><a href="#">Pricing</a></li>-->
+                        <!--<li><a href="#">Contact</a></li>-->
+                    <!--</ul>-->
+                <!--</nav>-->
+            <!--</div>-->
+        <!--</div>-->
     </footer>
 </div>
 <div id="advance-search" class="main-page clearfix" th:fragment="search">

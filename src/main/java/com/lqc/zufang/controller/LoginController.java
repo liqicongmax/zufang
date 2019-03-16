@@ -101,7 +101,7 @@ public class LoginController {
 
     /**
      * 用户登录注销
-     * @param session
+     * @param session session信息
      * @return
      */
     @RequestMapping("/logout")
