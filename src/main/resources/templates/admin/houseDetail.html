@@ -46,7 +46,7 @@
                     <button th:if="${collect}=='uncollected'" class="btn top-btn"><a th:href="@{/collect(id=${houseResource.id})}">收藏</a></button>
                     <button th:if="${collect}=='collected'" class="btn top-btn">已收藏</button>
                     <div class="property-single-meta">
-                        <ul class="clearfix" th:i>
+                        <ul class="clearfix">
                             <li><span>房间大小 :</span>
                                 <p th:text="${houseResource.size}"> m²</p></li>
                             <li><span>省 :</span>

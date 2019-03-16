@@ -30,16 +30,21 @@ public class UserController {
     }
 
     /**
-     * 用户取消收藏
+     * TODO:个人中心页面的我的收藏未做
+     */
+
+    /**
+     * 用户在个人中心页面取消收藏
      * @param id 房源id
      * @param session
      * @return
      */
-    @RequestMapping("/cancelcollect")
+    @RequestMapping("/ucancelcollect")
     public String cancelcollect(@RequestParam("id") Long id, HttpSession session) {
         User user=(User)session.getAttribute("user");
         userService.cancelcollect(id,user.getId());
-        return "redirect:user";
+        return "redirect:house?id="+id;
     }
+
 
 }
