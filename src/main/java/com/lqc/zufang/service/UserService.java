@@ -36,4 +36,5 @@ public interface UserService {
      * @param userid
      */
     void cancelcollect(Long id,Long userid);
+
 }
