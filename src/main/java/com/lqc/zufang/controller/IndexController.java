@@ -32,7 +32,7 @@ public class IndexController {
      * @param model
      * @return
      */
-    @RequestMapping("/index")
+    @RequestMapping(value = {"/index",""})
     public String index(Model model) {
         List<HouseResource> houseResourceList = houseResourceService.getHouseResourceListLimitSix();
         List<List<HouseResource>> list = new ArrayList<>(2);
@@ -49,8 +49,8 @@ public class IndexController {
         }
         list.add(temp);
         list.add(temp1);
-        System.out.println("size:" + list.size());
-        System.out.println(list.get(0).get(0).getId());
+//        System.out.println("size:" + list.size());
+//        System.out.println(list.get(0).get(0).getId());
         model.addAttribute("list", list);
         return "index";
     }

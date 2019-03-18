@@ -24,7 +24,7 @@
 
 </head>
 <style>
-    a:visited{
+    a:visited {
         color: white;
     }
 </style>
@@ -42,7 +42,7 @@
     <header class="section-header home-section-header text-center">
         <div class="container">
             <h2 class="wow slideInRight">我的收藏</h2>
-            </div>
+        </div>
     </header>
     <div class="container">
         <div class="row">
@@ -55,7 +55,8 @@
                                     <a class="clearfix zoom"><img data-action="zoom"
                                                                   th:src="@{'/images/house/house' +${houseDetail.getId()}+ '.jpg'}"
                                                                   alt="Property Image"></a>
-                                    <span class="btn btn-warning btn-sale"><a th:href="@{/ucancelcollect(id=${houseDetail.getId()})}">取消收藏</a></span>
+                                    <span class="btn btn-warning btn-sale"><a
+                                            th:href="@{/ucancelcollect(id=${houseDetail.getId()})}">取消收藏</a></span>
                                 </figure>
                                 <div class="property-contents clearfix">
                                     <header class="property-header clearfix">
@@ -74,7 +75,8 @@
                                     <div class="property-meta clearfix">
                                         <span><i class="fa fa-arrows-alt" th:text="${houseDetail.size}+'㎡'"></i></span>
                                         <span><i class="fa fa-bed" th:text="${houseDetail.beds}+'beds'"></i></span>
-                                        <span><i class="fa fa-bathtub" th:text="${houseDetail.bathroom}+'baths'"></i></span>
+                                        <span><i class="fa fa-bathtub"
+                                                 th:text="${houseDetail.bathroom}+'baths'"></i></span>
                                     </div>
 
                                     <div class="author-box clearfix">
@@ -91,6 +93,11 @@
             </div>
         </div>
     </div>
+    <header class="section-header home-section-header text-center">
+        <div class="container">
+            <h2 class="wow slideInRight"><a th:href="@{/#}" style="color: black">我要出租!</a></h2>
+        </div>
+    </header>
 </section>
 
 <div th:include="include/header ::footer "></div>
