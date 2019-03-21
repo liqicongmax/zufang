@@ -39,8 +39,7 @@ public class UserController {
      */
     @RequestMapping("/user")
     public String userCenter(@RequestParam("id") Long id, Model model,HttpSession session) {
-        User user = userService.getUserById(id);
-        user=(User)session.getAttribute("user");
+        User user=(User)session.getAttribute("user");
         model.addAttribute("user", user);
         model.addAttribute("list",Modify(user,"collected"));
         model.addAttribute("list1",Modify(user,"rented"));
@@ -63,18 +62,20 @@ public class UserController {
     }
 
     /**
-     * 跳转到我要出租的页面
-     * 展示我当前正在出租的房屋列表
+     * 跳转到我要出租(即登记房源)的页面
      * @return
      */
     @RequestMapping("/toRent")
-    public String toRent(HttpSession session){
-        User user=(User)session.getAttribute("user");
-        List<HouseResource> houseResourceList=houseResourceService.getHouseResourceListByUserId(user.getId());
-
+    public String toRent(){
         return "admin/rent";
     }
 
+    /**
+     * 整合获取的房源列表,生成3个为一行的list集合
+     * @param user
+     * @param type
+     * @return
+     */
     private List<List<HouseResource>> Modify(User user,String type){
         List<Long> houseIds=new ArrayList<>();
         if(type.equals("collected")) {

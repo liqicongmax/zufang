@@ -4,6 +4,7 @@ import com.lqc.zufang.entity.HouseResource;
 import com.lqc.zufang.entity.HouseResourceQuery;
 import com.lqc.zufang.entity.User;
 import com.lqc.zufang.service.HouseResourceService;
+import com.lqc.zufang.util.IPUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -33,7 +38,7 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = {"/index",""})
-    public String index(Model model) {
+    public String index(Model model, HttpServletRequest request) {
         List<HouseResource> houseResourceList = houseResourceService.getHouseResourceListLimitSix();
         List<List<HouseResource>> list = new ArrayList<>(2);
         List<HouseResource> temp = new ArrayList<>(3);
@@ -49,9 +54,16 @@ public class IndexController {
         }
         list.add(temp);
         list.add(temp1);
-//        System.out.println("size:" + list.size());
-//        System.out.println(list.get(0).get(0).getId());
         model.addAttribute("list", list);
+        //String ip=IPUtil.getClientIp(request);
+        //System.out.println("-------------------"+ip+"============================");
+        String ip=" 101.71.41.228";
+        try {
+            String json_result = IPUtil.getAddresses("ip=" + ip, "utf-8");
+            System.out.println(json_result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "index";
     }
 
