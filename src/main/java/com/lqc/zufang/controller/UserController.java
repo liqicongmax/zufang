@@ -2,6 +2,7 @@ package com.lqc.zufang.controller;
 
 import com.lqc.zufang.entity.HouseResource;
 import com.lqc.zufang.entity.User;
+import com.lqc.zufang.service.CollectService;
 import com.lqc.zufang.service.HouseResourceService;
 import com.lqc.zufang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ public class UserController {
     UserService userService;
     @Autowired
     HouseResourceService houseResourceService;
-
+    @Autowired
+    CollectService collectService;
     /**
      * 跳转到用户中心页面时要展示用户的收藏列表
      *
@@ -36,29 +38,12 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user")
-    public String userCenter(@RequestParam("id") Long id, Model model) {
+    public String userCenter(@RequestParam("id") Long id, Model model,HttpSession session) {
         User user = userService.getUserById(id);
+        user=(User)session.getAttribute("user");
         model.addAttribute("user", user);
-        List<Long> houseIds = userService.getHouseIdsByUser(user.getUsername());
-        List<HouseResource> houseResourceList = new ArrayList<>();
-        //获取用户的收藏列表
-        for (Long houseId : houseIds) {
-            houseResourceList.add(houseResourceService.getHouseResourceById(houseId));
-        }
-        List<List<HouseResource>> list=new ArrayList<>();
-        int size=houseResourceList.size();
-        int tsize=size;
-        while(tsize!=0){
-            int i=0;
-            List<HouseResource> temp=new ArrayList<>();
-            while(i<3&&tsize>0){
-                temp.add(houseResourceList.get(size-tsize));
-                i++;
-                tsize--;
-            }
-            list.add(temp);
-        }
-        model.addAttribute("list",list);
+        model.addAttribute("list",Modify(user,"collected"));
+        model.addAttribute("list1",Modify(user,"rented"));
         return "/admin/user";
     }
 
@@ -77,5 +62,45 @@ public class UserController {
         return "redirect:user?id=" + user.getId();
     }
 
+    /**
+     * 跳转到我要出租的页面
+     * 展示我当前正在出租的房屋列表
+     * @return
+     */
+    @RequestMapping("/toRent")
+    public String toRent(HttpSession session){
+        User user=(User)session.getAttribute("user");
+        List<HouseResource> houseResourceList=houseResourceService.getHouseResourceListByUserId(user.getId());
 
+        return "admin/rent";
+    }
+
+    private List<List<HouseResource>> Modify(User user,String type){
+        List<Long> houseIds=new ArrayList<>();
+        if(type.equals("collected")) {
+            houseIds = collectService.getCollectListByUserId(user.getId());
+        }
+        if(type.equals("rented")){
+            houseIds=houseResourceService.getHouseResourceIdListByUserId(user.getId());
+        }
+        List<HouseResource> houseResourceList = new ArrayList<>();
+        //获取用户的收藏列表
+        for (Long houseId : houseIds) {
+            houseResourceList.add(houseResourceService.getHouseResourceById(houseId));
+        }
+        List<List<HouseResource>> list=new ArrayList<>();
+        int size=houseResourceList.size();
+        int tsize=size;
+        while(tsize!=0){
+            int i=0;
+            List<HouseResource> temp=new ArrayList<>();
+            while(i<3&&tsize>0){
+                temp.add(houseResourceList.get(size-tsize));
+                i++;
+                tsize--;
+            }
+            list.add(temp);
+        }
+        return list;
+    }
 }

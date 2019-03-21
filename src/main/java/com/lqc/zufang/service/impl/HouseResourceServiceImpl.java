@@ -40,5 +40,25 @@ public class HouseResourceServiceImpl implements HouseResourceService {
 
     }
 
+    /**
+     * 通过用户id查询所有他当前正在出租的房屋
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public List<HouseResource> getHouseResourceListByUserId(Long id) {
+        return houseResourceMapper.getHouseResourceListByUserId(id);
+    }
 
+    /**
+     * 通过用户id查询他所有当前正在出租的房屋
+     *
+     * @param id
+     * @return 获取房屋id集合
+     */
+    @Override
+    public List<Long> getHouseResourceIdListByUserId(Long id) {
+        return houseResourceMapper.getHouseResourceIdListByUserId(id);
+    }
 }

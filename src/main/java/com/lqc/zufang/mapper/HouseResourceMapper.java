@@ -17,5 +17,6 @@ public interface HouseResourceMapper {
     HouseResource getHouseResourceById(Long id);
     List<HouseResource> getHouseResourceListLimitSix();
     List<HouseResource> query(HouseResourceQuery query);
-
+    List<HouseResource> getHouseResourceListByUserId(Long id);
+    List<Long> getHouseResourceIdListByUserId(Long id);
 }

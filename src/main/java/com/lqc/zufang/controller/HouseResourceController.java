@@ -94,4 +94,9 @@ public class HouseResourceController {
         userService.cancelcollect(id,user.getId());
         return "redirect:house?id="+id;
     }
+
+//    @RequestMapping("toaddhouse")
+//    public String addHouse_ui(){
+//        return
+//    }
 }

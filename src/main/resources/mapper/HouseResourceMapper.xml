@@ -27,4 +27,10 @@
     <select id="getCollectListByUserId" parameterType="Long" resultType="Long">
         select houseid  from collect where userid=#{id}
     </select>
+    <select id="getHouseResourceListByUserId" parameterType="Long" resultType="com.lqc.zufang.entity.HouseResource">
+        select * from house where belonguser=#{id}
+    </select>
+    <select id="getHouseResourceIdListByUserId" parameterType="Long" resultType="Long">
+        select id from house where belonguser=#{id}
+    </select>
 </mapper>

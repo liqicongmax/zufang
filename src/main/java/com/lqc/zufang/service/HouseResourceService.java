@@ -22,5 +22,18 @@ public interface HouseResourceService {
 
     List<HouseResource> query(HouseResourceQuery query);
 
+    /**
+     * 通过用户id查询所有他当前正在出租的房屋
+     * @param id
+     * @return 获取房屋集合
+     */
+    List<HouseResource> getHouseResourceListByUserId(Long id);
+
+    /**
+     * 通过用户id查询他所有当前正在出租的房屋
+     * @param id
+     * @return 获取房屋id集合
+     */
+    List<Long> getHouseResourceIdListByUserId(Long id);
 
 }

@@ -27,6 +27,7 @@
     a:visited {
         color: white;
     }
+
 </style>
 <body class="">
 <div id="page-loader">
@@ -37,11 +38,10 @@
 </div>
 <div th:include="include/header :: header"></div>
 
-
-<section id="home-property-listing">
+<div class="container">
     <header class="section-header home-section-header text-center">
         <div class="container">
-            <h2 class="wow slideInRight">我的收藏</h2>
+            <h2 class="wow slideInRight">我的出租</h2>
         </div>
     </header>
     <div class="container">
@@ -93,12 +93,53 @@
             </div>
         </div>
     </div>
-    <header class="section-header home-section-header text-center">
-        <div class="container">
-            <h2 class="wow slideInRight"><a th:href="@{/#}" style="color: black">我要出租!</a></h2>
+    <div class="row">
+        <div class="span12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>产品</th>
+                        <th>交付时间</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>TB - Monthly</td>
+                    <td>01/04/2012</td>
+                    <td>Default</td>
+                </tr>
+                <tr class="success">
+                    <td>1</td>
+                    <td>TB - Monthly</td>
+                    <td>01/04/2012</td>
+                    <td>Approved</td>
+                </tr>
+                <tr class="error">
+                    <td>2</td>
+                    <td>TB - Monthly</td>
+                    <td>02/04/2012</td>
+                    <td>Declined</td>
+                </tr>
+                <tr class="warning">
+                    <td>3</td>
+                    <td>TB - Monthly</td>
+                    <td>03/04/2012</td>
+                    <td>Pending</td>
+                </tr>
+                <tr class="info">
+                    <td>4</td>
+                    <td>TB - Monthly</td>
+                    <td>04/04/2012</td>
+                    <td>Call in to confirm</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-    </header>
-</section>
+    </div>
+</div>
 
 <div th:include="include/header ::footer "></div>
 <a href="#top" id="scroll-top"><i class="fa fa-angle-up"></i></a>
