@@ -109,4 +109,8 @@ public class LoginController {
         session.removeAttribute("user");
         return "redirect:index";
     }
+    @RequestMapping("/test")
+    public String test(){
+        return "/test";
+    }
 }
