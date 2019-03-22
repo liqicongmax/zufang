@@ -37,7 +37,7 @@ public class IndexController {
      * @param model
      * @return
      */
-    @RequestMapping(value = {"/index",""})
+    @RequestMapping(value = {"/index", ""})
     public String index(Model model, HttpServletRequest request) {
         List<HouseResource> houseResourceList = houseResourceService.getHouseResourceListLimitSix();
         List<List<HouseResource>> list = new ArrayList<>(2);
@@ -57,9 +57,15 @@ public class IndexController {
         model.addAttribute("list", list);
         //String ip=IPUtil.getClientIp(request);
         //System.out.println("-------------------"+ip+"============================");
-        String ip=" 101.71.41.228";
+        String ip = "101.71.41.228";
         try {
-            String json_result = IPUtil.getAddresses("ip=" + ip, "utf-8");
+//            String ak="XqyOi7GIOW6P5wTNE42FuVaz7hguz9Lh";
+//            String sk="llG4UIs68uviFLlCfrpvtO6wCwysTnRH";
+//            String sn="81092ee46e013723fcd1cd2505accd49";
+//            String json_result = IPUtil.getAddresses("ip=" + ip+"&ak="+ak+"&sn="+sn, "utf-8");
+//            System.out.println(json_result);
+            //TODO 把淘宝的ip查地址接口换成聚合数据的ip接口,再添加到缓存中
+            String json_result=IPUtil.getAddresses("ip="+ip,"utf-8");
             System.out.println(json_result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,19 +75,19 @@ public class IndexController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(@RequestParam("province") String province,
-                       @RequestParam("city") String city,
-                       @RequestParam("district") String district,
-                       @RequestParam(value = "low", required = false) String low,
-                       @RequestParam(value = "high", required = false) String high,
-                       Model model) {
+                         @RequestParam("city") String city,
+                         @RequestParam("district") String district,
+                         @RequestParam(value = "low", required = false) String low,
+                         @RequestParam(value = "high", required = false) String high,
+                         Model model) {
         HouseResourceQuery houseResourceQuery = new HouseResourceQuery();
         houseResourceQuery.setProvince(province);
         houseResourceQuery.setCity(city);
         houseResourceQuery.setDistrict(district);
-        if(!low.equals("any")) {
+        if (!low.equals("any")) {
             houseResourceQuery.setLow(Integer.valueOf(low));
         }
-        if(!high.equals("any")) {
+        if (!high.equals("any")) {
             houseResourceQuery.setHigh(Integer.valueOf(high));
         }
         List<HouseResource> resources = houseResourceService.query(houseResourceQuery);
@@ -99,7 +105,7 @@ public class IndexController {
         }
         list.add(temp);
         list.add(temp1);
-        model.addAttribute("list",list);
+        model.addAttribute("list", list);
         return "search";
     }
 }
