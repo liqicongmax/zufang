@@ -19,14 +19,20 @@
     </properties>
 
     <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-            <!-- 1.5的版本默认采用的连接池技术是jedis，2.0以上版本默认连接池是lettuce, 因为此次是采用jedis，所以需要排除lettuce的jar -->
             <exclusions>
                 <exclusion>
                     <groupId>redis.clients</groupId>

@@ -12,8 +12,12 @@
     <select id="query" parameterType="com.lqc.zufang.entity.HouseResourceQuery" resultType="com.lqc.zufang.entity.HouseResource">
         select * from house where
         province=#{province}
-        and city=#{city}
-        and district=#{district}
+        <if test="city !=null ">
+            and city=#{city}
+        </if>
+        <if test="district!=null">
+            and district=#{district}
+        </if>
         <if test="low!=null">
             and price> #{low}
         </if>

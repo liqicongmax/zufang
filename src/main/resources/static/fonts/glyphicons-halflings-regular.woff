@@ -6,7 +6,8 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />	<title>Page not found</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
+	<title>Page not found</title>
 
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="http://livelearnonline.com/xmlrpc.php" />
@@ -146,9 +147,13 @@ var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_ur
 <script type='text/javascript' src='http://livelearnonline.com/wp-content/themes/lms/framework/js/public/modernizr.min.js?ver=4.7.3'></script>
 <meta name="generator" content="Powered by LayerSlider 6.0.5 - Multi-Purpose, Responsive, Parallax, Mobile-Friendly Slider Plugin for WordPress." />
 <!-- LayerSlider updates and docs at: https://layerslider.kreaturamedia.com -->
-<style type="text/css">	.page-id-569 .main-title-section-wrapper { margin:0px; }
 
-.page-id-1521 .main-title-section-wrapper { margin:0px; }</style><link rel='https://api.w.org/' href='https://livelearnonline.com/wp-json/' />
+<style type="text/css">
+	.page-id-569 .main-title-section-wrapper { margin:0px; }
+
+.page-id-1521 .main-title-section-wrapper { margin:0px; }
+</style>
+<link rel='https://api.w.org/' href='https://livelearnonline.com/wp-json/' />
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://livelearnonline.com/xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://livelearnonline.com/wp-includes/wlwmanifest.xml" /> 
 <meta name="generator" content="WordPress 4.7.3" />
@@ -305,7 +310,7 @@ tbody tr:nth-child(2n+1) td, tbody tr:nth-child(2n+1) th, .boxed .inner-wrapper,
                                     <li> <a href="#" title=""> Privacy Policy </a> </li>
                                     <li> <a href="#" title=""> Terms of Use </a> </li>
                                 </ul></div>
-		</aside></div><div class='column dt-sc-one-fourth '><aside id="text-8" class="widget widget_text"><h3 class="widgettitle">Contact us</h3>			<div class="textwidget"><div class="dt-sc-contact-info address"><div class='icon'><i class='fa fa-location-arrow'></i></div><p>The Design Themes Inc.<br>Mary Jane St, Sydney 2233 <br> Australia.<p><span></span></div>
+		</aside></div><div class='column dt-sc-one-fourth '><aside id="text-8" class="widget widget_text"><h3 class="widgettitle">Contact us</h3>			<div class="textwidget"><div class="dt-sc-contact-info ip2Address"><div class='icon'><i class='fa fa-location-arrow'></i></div><p>The Design Themes Inc.<br>Mary Jane St, Sydney 2233 <br> Australia.<p><span></span></div>
 
 <div class="dt-sc-contact-info"><div class='icon'><i class='fa fa-phone'></i></div><p>+11 (2) 7654 2233</p><span></span></div>
 
@@ -340,7 +345,7 @@ jQuery(document).ready(function(jQuery){jQuery.datepicker.setDefaults({"closeTex
 <script type='text/javascript' src='http://livelearnonline.com/wp-content/plugins/designthemes-core-features/custom-post-types/js/jquery.print.js?ver=4.7.3'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
-var object = {"quizTimeout":"Timeout!","noResult":"No Results Found!","noGraph":"No enough data to generate graph!","onRefresh":"Refreshing this quiz page will mark this session as completed.","registrationSuccess":"You have successfully registered with our class!","locationAlert1":"To get GPS location please fill address.","locationAlert2":"Please add latitude and longitude"};
+var object = {"quizTimeout":"Timeout!","noResult":"No Results Found!","noGraph":"No enough data to generate graph!","onRefresh":"Refreshing this quiz page will mark this session as completed.","registrationSuccess":"You have successfully registered with our class!","locationAlert1":"To get GPS location please fill ip2Address.","locationAlert2":"Please add latitude and longitude"};
 /* ]]> */
 </script>
 <script type='text/javascript' src='http://livelearnonline.com/wp-content/plugins/designthemes-core-features/custom-post-types/js/dt.custom.js?ver=4.7.3'></script>

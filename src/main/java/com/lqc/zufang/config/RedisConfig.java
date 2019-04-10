@@ -1,35 +1,87 @@
 package com.lqc.zufang.config;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import java.lang.reflect.Method;
+
 /**
  * @author liqicong@myhexin.com
- * @date 2019/3/22 9:14
+ * @date 2019/4/10 13:26
  */
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
+    @Autowired
+    private JedisConnectionFactory jedisConnectionFactory;
+
+    /**
+     * 生成key的策略
+     *
+     * @return
+     */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public KeyGenerator keyGenerator() {
+        return new KeyGenerator() {
+            @Override
+            public Object generate(Object target, Method method, Object... params) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(target.getClass().getName());
+                sb.append(method.getName());
+                for (Object obj : params) {
+                    sb.append(obj.toString());
+                }
+                return sb.toString();
+            }
+        };
+    }
+
+    /**
+     * 管理缓存
+     */
+    @Bean
+    public CacheManager cacheManager() {
+        RedisCacheManager.RedisCacheManagerBuilder builder = RedisCacheManager
+                .RedisCacheManagerBuilder
+                .fromConnectionFactory(jedisConnectionFactory);
+        return builder.build();
+    }
+    /**
+     * RedisTemplate配置
+     */
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
+        //设置序列化
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
         // 配置redisTemplate
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        redisTemplate.setConnectionFactory(jedisConnectionFactory);
         RedisSerializer stringSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringSerializer); // key序列化
-        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer()); // value序列化
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer); // value序列化
         redisTemplate.setHashKeySerializer(stringSerializer); // Hash key序列化
-        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer()); // Hash value序列化
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer); // Hash value序列化
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
-
 }

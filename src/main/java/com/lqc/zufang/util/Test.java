@@ -1,7 +1,9 @@
 package com.lqc.zufang.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 
@@ -13,11 +15,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Test {
     @Autowired
-    RedisTemplate redisTemplate;
-    public void set(){
-        redisTemplate.opsForValue().set("xiaohong",123);
+    RedisUtil redisUtil;
+    public void test(){
+        redisUtil.set("wo","asd");
     }
-    public static void main(String[] args){
-        new Test().set();
-    }
+
 }

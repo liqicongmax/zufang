@@ -1,7 +1,6 @@
 package com.lqc.zufang.entity;
 
 import com.lqc.zufang.base.BaseDto;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
 
@@ -18,15 +17,15 @@ public class User extends BaseDto {
     private String phonenumber;
     private String email;
     private List<Long> houseIds;//用户收藏的所有房源的id
-    private List<GrantedAuthority> authorities;//用户所拥有的角色列表
-
-    public List<GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(List<GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
+//    private List<GrantedAuthority> authorities;//用户所拥有的角色列表
+//
+//    public List<GrantedAuthority> getAuthorities() {
+//        return authorities;
+//    }
+//
+//    public void setAuthorities(List<GrantedAuthority> authorities) {
+//        this.authorities = authorities;
+//    }
 
     public List<Long> getHouseIds() {
         return houseIds;
