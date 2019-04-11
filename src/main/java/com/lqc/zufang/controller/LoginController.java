@@ -49,9 +49,7 @@ public class LoginController {
                         HttpSession session) {
         BaseReturnDto<Boolean> brd = new BaseReturnDto<>();
         User user = new User(username, password);
-
-
-        System.out.println(username+""+password);
+        System.out.println(username+"123"+password);
         try {
             if (loginService.getUser(user)) {
                 brd = new BaseReturnDto<>(1, "登录成功", true);
