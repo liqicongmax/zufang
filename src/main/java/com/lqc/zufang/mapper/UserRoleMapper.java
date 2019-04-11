@@ -11,5 +11,5 @@ import java.util.List;
  */
 @Mapper
 public interface UserRoleMapper {
-    List<UserRole> listByUserId(Integer id);
+    UserRole listByUserId(Integer id);
 }

@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
 
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author liqicong@myhexin.com
  * @date 2019/4/10 16:57
  */
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ip2Address {
+public class Ip2Address implements Serializable {
     private Integer code;
     private Data data;
 

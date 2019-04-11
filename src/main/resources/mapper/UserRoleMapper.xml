@@ -4,6 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lqc.zufang.mapper.UserRoleMapper">
     <select id="listByUserId" parameterType="Integer" resultType="UserRole">
-        select * from user_role where id=#{id}
+        select * from user_role where userId=#{id}
     </select>
 </mapper>

@@ -3,13 +3,15 @@ package com.lqc.zufang.entity;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author liqicong@myhexin.com
  * @date 2019/4/10 17:37
  */
 @NoArgsConstructor
 @AllArgsConstructor
-public class Data{
+public class Data implements Serializable {
     private String ip;
     private String country;
     private String area;

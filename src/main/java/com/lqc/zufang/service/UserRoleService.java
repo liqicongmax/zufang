@@ -9,5 +9,5 @@ import java.util.List;
  * @date 2019/4/11 10:40
  */
 public interface UserRoleService {
-    List<UserRole> listByUserId(Integer id);
+    UserRole listByUserId(Integer id);
 }

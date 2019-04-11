@@ -6,6 +6,7 @@ import com.lqc.zufang.service.CollectService;
 import com.lqc.zufang.service.HouseResourceService;
 import com.lqc.zufang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,12 +39,13 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user")
+    @PreAuthorize("hasRole('ADMIN')")
     public String userCenter(@RequestParam("id") Long id, Model model,HttpSession session) {
         User user=(User)session.getAttribute("user");
         model.addAttribute("user", user);
         model.addAttribute("list",Modify(user,"collected"));
         model.addAttribute("list1",Modify(user,"rented"));
-        return "/admin/user";
+        return "admin/user";
     }
 
 
@@ -55,6 +57,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/ucancelcollect")
+    @PreAuthorize("hasAnyRole('Role_ADMIN','ROLE_USER')")
     public String cancelcollect(@RequestParam("id") Long id, HttpSession session) {
         User user = (User) session.getAttribute("user");
         userService.cancelcollect(id, user.getId());
@@ -66,6 +69,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/toRent")
+    @PreAuthorize("hasAnyRole('ROLE_USER','Role_ADMIN')")
     public String toRent(){
         return "admin/rent";
     }

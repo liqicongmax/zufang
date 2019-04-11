@@ -2,8 +2,11 @@ package com.lqc.zufang.controller;
 
 import com.lqc.zufang.base.BaseReturnDto;
 import com.lqc.zufang.constant.Identity;
+import com.lqc.zufang.entity.Role;
 import com.lqc.zufang.entity.User;
 import com.lqc.zufang.service.LoginService;
+import com.lqc.zufang.service.RoleService;
+import com.lqc.zufang.service.UserRoleService;
 import com.lqc.zufang.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +33,10 @@ public class LoginController {
     LoginService loginService;
     @Autowired
     UserService userService;
+    @Autowired
+    RoleService roleService;
+    @Autowired
+    UserRoleService userRoleService;
     @RequestMapping("/gotoLogin")
     public String loginIndex(){
         return "login";
@@ -49,7 +56,7 @@ public class LoginController {
                         HttpSession session) {
         BaseReturnDto<Boolean> brd = new BaseReturnDto<>();
         User user = new User(username, password);
-        System.out.println(username+"123"+password);
+        //System.out.println(username+"123"+password);
         try {
             if (loginService.getUser(user)) {
                 brd = new BaseReturnDto<>(1, "登录成功", true);
@@ -57,6 +64,7 @@ public class LoginController {
             } else {
                 brd = new BaseReturnDto<>(-1, "登录失败", false);
                 System.out.println("失败");
+                return "redirect:gotoLogin";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,6 +77,10 @@ public class LoginController {
         user.setHouseIds(houseIds);
         model.addAttribute("result", brd);
         session.setAttribute("user",user);
+        Integer userId=user.getId().intValue();
+        Integer roleId=userRoleService.listByUserId(userId).getRoleId().intValue();
+        Role role=roleService.selectById(roleId);
+        System.out.println(role.getName());
         return "redirect:index";
     }
 

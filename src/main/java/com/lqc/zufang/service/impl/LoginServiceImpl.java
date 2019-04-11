@@ -19,9 +19,13 @@ public class LoginServiceImpl implements LoginService {
         if(user1==null){
             return false;
         }
-        String md5code=DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
-        System.out.println(md5code);
-        return md5code.equals(user1.getPassword());
+//        String md5code=DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+//        System.out.println(md5code);
+//        return md5code.equals(user1.getPassword());
+        if(!user1.getPassword().equals(user.getPassword())){
+            return false;
+        }
+        return true;
     }
 
     @Override
