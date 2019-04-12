@@ -39,7 +39,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     public String userCenter(@RequestParam("id") Long id, Model model,HttpSession session) {
         User user=(User)session.getAttribute("user");
         model.addAttribute("user", user);

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = {"/index", ""})
-    public String index(Model model, HttpServletRequest request) {
+    public String index(Model model, HttpSession session) {
         List<HouseResource> houseResourceList=new ArrayList<>();
         String ip = "101.71.41.228";
         //ip="125.114.238.231";
@@ -72,6 +73,7 @@ public class IndexController {
         //System.out.println("-------------------"+ip+"============================");
         Data data=ip2Address.getData();
         model.addAttribute("address",data);
+        session.setAttribute("address",data);
         return "index";
     }
     @RequestMapping(value = "/search", method = RequestMethod.GET)
