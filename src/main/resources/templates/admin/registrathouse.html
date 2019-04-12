@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Home</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Poppins:400,600" rel="stylesheet">
+
+
+    <!-- favicon and touch icons -->
+    <link rel="shortcut icon" href="assets/images/favicon.png">
+
+    <!-- Bootstrap -->
+    <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="plugins/slick/slick.css" rel="stylesheet">
+    <link href="plugins/slick-nav/slicknav.css" rel="stylesheet">
+    <link href="plugins/wow/animate.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+
+</head>
+<style>
+    a:visited {
+        color: white;
+    }
+</style>
+<body class="">
+<div id="page-loader">
+    <div class="loaders">
+        <img src="assets/images/loader/3.gif" alt="First Loader">
+        <img src="assets/images/loader/4.gif" alt="First Loader">
+    </div>
+</div>
+<div th:include="include/header :: header"></div>
+
+
+<section id="home-property-listing">
+    <header class="section-header home-section-header text-center">
+        <div class="container">
+            <h2 class="wow slideInRight">我的收藏</h2>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="row" th:each="house:${list}">
+                <div th:each="houseDetail:${house}">
+                    <div th:if="${houseDetail}!=null">
+                        <div class="col-lg-4 col-sm-6 layout-item-wrap" style="float: left;">
+                            <article class="property layout-item clearfix">
+                                <figure class="feature-image">
+                                    <a class="clearfix zoom"><img data-action="zoom"
+                                                                  th:src="@{'/images/house/house' +${houseDetail.getId()}+ '.jpg'}"
+                                                                  alt="Property Image"></a>
+                                    <span class="btn btn-warning btn-sale"><a
+                                            th:href="@{/ucancelcollect(id=${houseDetail.getId()})}">取消收藏</a></span>
+                                </figure>
+                                <div class="property-contents clearfix">
+                                    <header class="property-header clearfix">
+                                        <div class="pull-left">
+                                            <h6 class="entry-title"><a th:href="@{/house(id=${houseDetail.getId()})}">Guaranteed
+                                                modern home</a></h6>
+                                            <span class="property-location">
+                                        <i class="fa fa-map-marker"
+                                           th:text="${houseDetail.province}+'省'+${houseDetail.city}+'市'+${houseDetail.district+'区'}+${houseDetail.place}"></i>
+                                    </span>
+                                        </div>
+                                        <button class="btn btn-default btn-price pull-right btn-3d" data-hover="月租">
+                                            <strong th:text="'¥'+${houseDetail.getPrice()}"></strong>
+                                        </button>
+                                    </header>
+                                    <div class="property-meta clearfix">
+                                        <span><i class="fa fa-arrows-alt" th:text="${houseDetail.size}+'㎡'"></i></span>
+                                        <span><i class="fa fa-bed" th:text="${houseDetail.beds}+'beds'"></i></span>
+                                        <span><i class="fa fa-bathtub"
+                                                 th:text="${houseDetail.bathroom}+'baths'"></i></span>
+                                    </div>
+
+                                    <div class="author-box clearfix">
+                                        <a href="#" class="author-img"><img src="assets/images/agents/1.jpg"
+                                                                            alt="Agent Image"></a>
+                                        <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
+                                        <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="section-header home-section-header text-center">
+        <div class="container">
+            <h2 class="wow slideInRight"><a th:href="@{/toRent}" style="color: black">我的出租</a></h2>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="row" th:each="house:${list1}">
+                <div th:each="houseDetail:${house}">
+                    <div th:if="${houseDetail}==null">您暂时没有房间正在出租</div>
+                    <div th:if="${houseDetail}!=null">
+                        <div class="col-lg-4 col-sm-6 layout-item-wrap" style="float: left;">
+                            <article class="property layout-item clearfix">
+                                <figure class="feature-image">
+                                    <a class="clearfix zoom"><img data-action="zoom"
+                                                                  th:src="@{'/images/house/house' +${houseDetail.getId()}+ '.jpg'}"
+                                                                  alt="Property Image"></a>
+                                    <span class="btn btn-warning btn-sale">sale</span>
+                                </figure>
+                                <div class="property-contents clearfix">
+                                    <header class="property-header clearfix">
+                                        <div class="pull-left">
+                                            <h6 class="entry-title"><a th:href="@{/house(id=${houseDetail.getId()})}">Guaranteed
+                                                modern home</a></h6>
+                                            <span class="property-location">
+                                        <i class="fa fa-map-marker"
+                                           th:text="${houseDetail.province}+'省'+${houseDetail.city}+'市'+${houseDetail.district+'区'}+${houseDetail.place}"></i>
+                                    </span>
+                                        </div>
+                                        <button class="btn btn-default btn-price pull-right btn-3d" data-hover="月租">
+                                            <strong th:text="'¥'+${houseDetail.getPrice()}"></strong>
+                                        </button>
+                                    </header>
+                                    <div class="property-meta clearfix">
+                                        <span><i class="fa fa-arrows-alt" th:text="${houseDetail.size}+'㎡'"></i></span>
+                                        <span><i class="fa fa-bed" th:text="${houseDetail.beds}+'beds'"></i></span>
+                                        <span><i class="fa fa-bathtub"
+                                                 th:text="${houseDetail.bathroom}+'baths'"></i></span>
+                                    </div>
+
+                                    <div class="author-box clearfix">
+                                        <a href="#" class="author-img"><img src="assets/images/agents/1.jpg"
+                                                                            alt="Agent Image"></a>
+                                        <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
+                                        <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:include="include/header ::footer "></div>
+<a href="#top" id="scroll-top"><i class="fa fa-angle-up"></i></a>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.migrate.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="plugins/slick-nav/jquery.slicknav.min.js"></script>
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="plugins/tweetie/tweetie.js"></script>
+<script src="plugins/forms/jquery.form.min.js"></script>
+<script src="plugins/forms/jquery.validate.min.js"></script>
+<script src="plugins/modernizr/modernizr.custom.js"></script>
+<script src="plugins/wow/wow.min.js"></script>
+<script src="plugins/zoom/zoom.js"></script>
+<script src="plugins/mixitup/mixitup.min.js"></script>
+<!---<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyD2MtZynhsvwI2B40juK6SifR_OSyj4aBA&libraries=places"></script>--->
+<script src="plugins/whats-nearby/source/WhatsNearby.js"></script>
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

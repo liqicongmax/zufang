@@ -2,6 +2,7 @@ package com.lqc.zufang.config;
 
 import com.lqc.zufang.service.impl.CustomerUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -14,6 +15,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.Md4PasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
@@ -24,12 +27,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true) // 启用方法安全设置
+//@EnableGlobalMethodSecurity(prePostEnabled = true) // 启用方法安全设置
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //@Autowired
     //UserDetailsService userDetailsService;
     @Autowired
     CustomerUserDetailsService customerUserDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customerUserDetailsService);
@@ -54,11 +58,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 如果有允许匿名的url，填在下面
                 .antMatchers("/css/**", "/js/**", "/fonts/**", "/index", "/", "/assets/**", "/images/**", "/plugins/**").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/user*").hasAnyRole("ADMIN")
+                .antMatchers("/user").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // 设置登陆页
                 .formLogin().loginPage("/gotoLogin")
+                //.loginProcessingUrl("/login")
                 // 设置登陆成功页
                 .defaultSuccessUrl("/index").permitAll()
                 // 自定义登陆用户名和密码参数，默认为username和password
@@ -66,9 +71,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .passwordParameter("password")
                 .and()
                 .logout().permitAll();
-
         // 关闭CSRF跨域
-        //http.csrf().disable();
+        http.csrf().disable();
     }
 
     @Override

@@ -108,4 +108,10 @@ public class UserController {
         }
         return list;
     }
+
+    @RequestMapping("/registratHouse_ui")
+    public String registratHouse_ui(){
+        return "registrathouse";
+    }
+
 }

@@ -84,7 +84,7 @@
         }
 
         function goto_login() {
-            $("#login-username").val("");
+            $("#username").val("");
             $("#login-password").val("");
             $("#tab-1").prop("checked", true);
         }
@@ -97,14 +97,14 @@
         }
 
         function login() {//登录
-            var username = $("#login-username").val(),
+            var username1 = $("#username").val(),
                 password = $("#login-password").val(),
                 validatecode = null,
                 flag = false;
             //判断用户名密码是否为空
-            if (username == "") {
+            if (username1 == "") {
                 $.pt({
-                    target: $("#login-username"),
+                    target: $("#username"),
                     position: 'r',
                     align: 't',
                     width: 'auto',
@@ -126,9 +126,9 @@
             }
             //用户名只能是15位以下的字母或数字
             var regExp = new RegExp("^[a-zA-Z0-9_]{1,15}$");
-            if (!regExp.test(username)) {
+            if (!regExp.test(username1)) {
                 $.pt({
-                    target: $("#login-username"),
+                    target: $("#username"),
                     position: 'r',
                     align: 't',
                     width: 'auto',
@@ -149,14 +149,14 @@
 
         //注册
         function register() {
-            var username = $("#register-username").val(),
+            var username2 = $("#register-username").val(),
                 password = $("#register-password").val(),
                 repassword = $("#register-repassword").val(),
                 identity = $("#identity").val(),
                 flag = false,
                 validatecode = null;
             //判断用户名密码是否为空
-            if (username == "") {
+            if (username2 == "") {
                 $.pt({
                     target: $("#register-username"),
                     position: 'r',
@@ -192,7 +192,7 @@
             }
             //用户名只能是15位以下的字母或数字
             var regExp = new RegExp("^[a-zA-Z0-9_]{1,15}$");
-            if (!regExp.test(username)) {
+            if (!regExp.test(username2)) {
                 $.pt({
                     target: $("#register-username"),
                     position: 'r',
@@ -249,13 +249,13 @@
 
         //重置密码
         function forget() {
-            var username = $("#forget-username").val(),
+            var username3 = $("#forget-username").val(),
                 password = $("#forget-password").val(),
                 code = $("#forget-code").val(),
                 flag = false,
                 validatecode = null;
             //判断用户名密码是否为空
-            if (username == "") {
+            if (username3 == "") {
                 $.pt({
                     target: $("#forget-username"),
                     position: 'r',
@@ -279,7 +279,7 @@
             }
             //用户名只能是15位以下的字母或数字
             var regExp = new RegExp("^[a-zA-Z0-9_]{1,15}$");
-            if (!regExp.test(username)) {
+            if (!regExp.test(username3)) {
                 $.pt({
                     target: $("#forget-username"),
                     position: 'r',
@@ -390,9 +390,9 @@
                 <div class="pad input-container">
                     <section class="content">
 							<span class="input input--hideo">
-								<input class="input__field input__field--hideo" type="text" id="login-username" name="login-username"
+								<input class="input__field input__field--hideo" type="text" id="username" name="username"
                                        autocomplete="off" placeholder="请输入用户名" tabindex="1" maxlength="15"/>
-								<label class="input__label input__label--hideo" for="login-username">
+								<label class="input__label input__label--hideo" for="username">
 									<i class="fa fa-fw fa-user icon icon--hideo"></i>
 									<span class="input__label-content input__label-content--hideo"></span>
 								</label>

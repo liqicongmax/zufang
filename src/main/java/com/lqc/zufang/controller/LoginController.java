@@ -50,13 +50,13 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("login-username") String username,
+    public String login(@RequestParam("username") String username,
                         @RequestParam("login-password") String password,
                         Model model,
                         HttpSession session) {
         BaseReturnDto<Boolean> brd = new BaseReturnDto<>();
         User user = new User(username, password);
-        //System.out.println(username+"123"+password);
+        System.out.println(username+"123"+password);
         try {
             if (loginService.getUser(user)) {
                 brd = new BaseReturnDto<>(1, "登录成功", true);

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,7 +42,6 @@ public class CustomerUserDetailsService implements UserDetailsService {
         UserRole userRole = userRoleService.listByUserId(userId);
         SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(roleService.selectById(userRole.getRoleId().intValue()).getName());
         authorities.add(simpleGrantedAuthority);
-        System.out.println("我的权限-------------------" + simpleGrantedAuthority.getAuthority());
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
