@@ -1,13 +1,14 @@
 package com.lqc.zufang.util;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author liqicong@myhexin.com
@@ -39,6 +40,58 @@ public class IPUtil {
         return ip;
     }
 
+    private static String getIP() {
+        URL url = null;
+        URLConnection urlconn = null;
+        BufferedReader br = null;
+        try {
+            url = new URL("http://2019.ip138.com/ic.asp");//爬取的网站是百度搜索ip时排名第一的那个
+            urlconn = url.openConnection();
+            br = new BufferedReader(new InputStreamReader(
+                    urlconn.getInputStream()));
+            String buf = null;
+            String get= null;
+            while ((buf = br.readLine()) != null) {
+                get+=buf;
+            }
+            int where,end;
+            for(where=0;where<get.length()&&get.charAt(where)!='[';where++);
+            for(end=where;end<get.length()&&get.charAt(end)!=']';end++);
+            get=get.substring(where+1,end);
+            return get;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+
+    }
+
+    public static void main(String... args) {
+        InetAddress ia = null;
+        try {
+            ia = ia.getLocalHost();
+
+            String localname = ia.getHostName();
+            String localip = ia.getHostAddress();
+            System.out.println("本机名称是：" + localname);
+            System.out.println("本机的ip是 ：" + localip);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //String ip="10.10.36.156";
+        //System.out.println(IPUtil.getAddresses("ip=" + ip, "utf-8"));
+        System.out.println(getIP());
+    }
+
     /**
      * @param content        请求的参数 格式为：name=xxx&pwd=xxx
      * @param encodingString 服务器端请求编码。如GBK,UTF-8等
@@ -61,7 +114,7 @@ public class IPUtil {
      * @param encodingString 服务器端请求编码。如GBK,UTF-8等
      * @return
      */
-    private static String getResult(String urlStr, String content, String encodingString){
+    private static String getResult(String urlStr, String content, String encodingString) {
         URL url = null;
         HttpURLConnection connection = null;
         try {

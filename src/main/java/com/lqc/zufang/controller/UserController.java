@@ -57,7 +57,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/ucancelcollect")
-    @PreAuthorize("hasAnyRole('Role_ADMIN','ROLE_USER')")
+    //@PreAuthorize("hasAnyRole('Role_ADMIN','ROLE_USER')")
     public String cancelcollect(@RequestParam("id") Long id, HttpSession session) {
         User user = (User) session.getAttribute("user");
         userService.cancelcollect(id, user.getId());
@@ -69,7 +69,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/toRent")
-    @PreAuthorize("hasAnyRole('ROLE_USER','Role_ADMIN')")
+    //@PreAuthorize("hasAnyRole('ROLE_USER','Role_ADMIN')")
     public String toRent(){
         return "admin/rent";
     }
@@ -109,9 +109,5 @@ public class UserController {
         return list;
     }
 
-    @RequestMapping("/registratHouse_ui")
-    public String registratHouse_ui(){
-        return "registrathouse";
-    }
 
 }

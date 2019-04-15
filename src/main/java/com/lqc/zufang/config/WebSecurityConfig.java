@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 如果有允许匿名的url，填在下面
                 .antMatchers("/css/**", "/js/**", "/fonts/**", "/index", "/", "/assets/**", "/images/**", "/plugins/**").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/user").permitAll()
+                .antMatchers("/user","/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // 设置登陆页
