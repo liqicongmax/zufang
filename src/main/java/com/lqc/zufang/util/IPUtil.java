@@ -40,7 +40,7 @@ public class IPUtil {
         return ip;
     }
 
-    private static String getIP() {
+    public static String getIP() {
         URL url = null;
         URLConnection urlconn = null;
         BufferedReader br = null;
@@ -84,7 +84,6 @@ public class IPUtil {
             System.out.println("本机名称是：" + localname);
             System.out.println("本机的ip是 ：" + localip);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         //String ip="10.10.36.156";

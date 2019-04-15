@@ -45,7 +45,8 @@ public class IndexController {
     @RequestMapping(value = {"/index", ""})
     public String index(Model model, HttpSession session) {
         List<HouseResource> houseResourceList=new ArrayList<>();
-        String ip = "101.71.41.228";
+        String ip = IPUtil.getIP();
+        System.out.println(ip);
         //ip="125.114.238.231";
         Ip2Address ip2Address =(Ip2Address)redisUtil.get(ip);
         if(ip2Address ==null){

@@ -17,7 +17,7 @@ public class HouseResource extends BaseDto {
     private Integer price;//每月房租价格
     private String description;//房源描述
     private Integer size;//房间大小
-    private Integer status;//0未出租,1已出租
+    private Integer status;//0已发布,1未发布
     private Integer beds;//床个数
     private Integer bathroom;//浴室个数
     private String type;//出租类型,首租或转租

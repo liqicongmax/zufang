@@ -61,4 +61,25 @@ public class HouseResourceServiceImpl implements HouseResourceService {
     public List<Long> getHouseResourceIdListByUserId(Long id) {
         return houseResourceMapper.getHouseResourceIdListByUserId(id);
     }
+
+
+    /**
+     * 上架房源
+     *
+     * @param houseId
+     */
+    @Override
+    public void export(Long houseId) {
+        houseResourceMapper.export(houseId);
+    }
+
+    /**
+     * 下架房源
+     *
+     * @param houseId
+     */
+    @Override
+    public void unload(Long houseId) {
+        houseResourceMapper.unload(houseId);
+    }
 }

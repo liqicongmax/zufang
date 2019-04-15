@@ -19,4 +19,6 @@ public interface HouseResourceMapper {
     List<HouseResource> query(HouseResourceQuery query);
     List<HouseResource> getHouseResourceListByUserId(Long id);
     List<Long> getHouseResourceIdListByUserId(Long id);
+    void export(Long id);
+    void unload(Long id);
 }

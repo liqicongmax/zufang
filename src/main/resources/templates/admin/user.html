@@ -95,7 +95,7 @@
     </div>
     <header class="section-header home-section-header text-center">
         <div class="container">
-            <h2 class="wow slideInRight"><a th:href="@{/toRent}" style="color: black">我的出租</a></h2>
+            <h2 class="wow slideInRight"><a th:href="@{/toRent(id=${session.user.id})}" style="color: black">我的出租</a></h2>
         </div>
     </header>
     <div class="container">

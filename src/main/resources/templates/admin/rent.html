@@ -14,6 +14,7 @@
     <!-- favicon and touch icons -->
     <link rel="shortcut icon" href="assets/images/favicon.png">
 
+    <script src="../../assets/js/PCASClass.js"></script>
     <!-- Bootstrap -->
     <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="plugins/slick/slick.css" rel="stylesheet">
@@ -24,10 +25,37 @@
 
 </head>
 <style>
-    a:visited {
-        color: white;
+    .black_overlay {
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 1001;
+        -moz-opacity: 0.8;
+        opacity: .80;
+        filter: alpha(opacity=88);
     }
 
+    .white_content {
+        display: none;
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        width: 55%;
+        height: 55%;
+        padding: 20px;
+        border: 10px solid orange;
+        background-color: antiquewhite;
+        z-index: 1002;
+        overflow: auto;
+    }
+
+    a:visited {
+        color: red;
+    }
 </style>
 <body class="">
 <div id="page-loader">
@@ -39,111 +67,126 @@
 <div th:include="include/header :: header"></div>
 
 <div class="container">
-    <header class="section-header home-section-header text-center">
-        <div class="container">
-            <h2 class="wow slideInRight">我的出租</h2>
-        </div>
-    </header>
     <div class="container">
-        <div class="row">
-            <div class="row" th:each="house:${list}">
-                <div th:each="houseDetail:${house}">
-                    <div th:if="${houseDetail}!=null">
-                        <div class="col-lg-4 col-sm-6 layout-item-wrap" style="float: left;">
-                            <article class="property layout-item clearfix">
-                                <figure class="feature-image">
-                                    <a class="clearfix zoom"><img data-action="zoom"
-                                                                  th:src="@{'/images/house/house' +${houseDetail.getId()}+ '.jpg'}"
-                                                                  alt="Property Image"></a>
-                                    <span class="btn btn-warning btn-sale"><a
-                                            th:href="@{/ucancelcollect(id=${houseDetail.getId()})}">取消收藏</a></span>
-                                </figure>
-                                <div class="property-contents clearfix">
-                                    <header class="property-header clearfix">
-                                        <div class="pull-left">
-                                            <h6 class="entry-title"><a th:href="@{/house(id=${houseDetail.getId()})}">Guaranteed
-                                                modern home</a></h6>
-                                            <span class="property-location">
-                                        <i class="fa fa-map-marker"
-                                           th:text="${houseDetail.province}+'省'+${houseDetail.city}+'市'+${houseDetail.district+'区'}+${houseDetail.place}"></i>
-                                    </span>
-                                        </div>
-                                        <button class="btn btn-default btn-price pull-right btn-3d" data-hover="月租">
-                                            <strong th:text="'¥'+${houseDetail.getPrice()}"></strong>
-                                        </button>
-                                    </header>
-                                    <div class="property-meta clearfix">
-                                        <span><i class="fa fa-arrows-alt" th:text="${houseDetail.size}+'㎡'"></i></span>
-                                        <span><i class="fa fa-bed" th:text="${houseDetail.beds}+'beds'"></i></span>
-                                        <span><i class="fa fa-bathtub"
-                                                 th:text="${houseDetail.bathroom}+'baths'"></i></span>
-                                    </div>
-
-                                    <div class="author-box clearfix">
-                                        <a href="#" class="author-img"><img src="assets/images/agents/1.jpg"
-                                                                            alt="Agent Image"></a>
-                                        <cite class="author-name">Personal Seller: <a href="#">Linda Garret</a></cite>
-                                        <span class="phone"><i class="fa fa-phone"></i> 00894 692-49-22</span>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="row">
         <div class="span12">
-            <table class="table">
+            <div th:if="${houseList}==null">
+                <button onclick="">添加出租信息</button>
+            </div>
+            <table class="table" th:if="${houseList}!=null">
                 <thead>
-                    <tr>
-                        <th>编号</th>
-                        <th>产品</th>
-                        <th>交付时间</th>
-                        <th>状态</th>
-                    </tr>
-                </thead>
-                <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>TB - Monthly</td>
-                    <td>01/04/2012</td>
-                    <td>Default</td>
+                    <th>ID</th>
+                    <th>房源介绍</th>
+                    <th>位置</th>
+                    <th>价格</th>
+                    <th>添加具体图片...</th>
+                    <th>发布房源</th>
                 </tr>
+                </thead>
+                <tbody th:each="house:${houseList}">
                 <tr class="success">
-                    <td>1</td>
-                    <td>TB - Monthly</td>
-                    <td>01/04/2012</td>
-                    <td>Approved</td>
-                </tr>
-                <tr class="error">
-                    <td>2</td>
-                    <td>TB - Monthly</td>
-                    <td>02/04/2012</td>
-                    <td>Declined</td>
-                </tr>
-                <tr class="warning">
-                    <td>3</td>
-                    <td>TB - Monthly</td>
-                    <td>03/04/2012</td>
-                    <td>Pending</td>
-                </tr>
-                <tr class="info">
-                    <td>4</td>
-                    <td>TB - Monthly</td>
-                    <td>04/04/2012</td>
-                    <td>Call in to confirm</td>
+                    <td th:text="${house.getId()}"></td>
+                    <td th:text="${house.getDescription()}"></td>
+                    <td th:text="${house.getProvince()}+${house.getCity()}+${house.getDistrict()}"></td>
+                    <td th:text="${house.getPrice()}"></td>
+                    <td>
+                        <a th:href="@{/toPicEdit(houseId=${house.getId()})}">添加...图片</a>
+                    </td>
+                    <td>
+                        <a th:if="${house.getStatus()==1}" th:href="@{/export(houseId=${house.getId()})}">发布</a>
+                        <a th:if="${house.getStatus()==0}" th:href="@{/unload(houseId=${house.getId()})}">下架</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <header class="section-header home-section-header text-center">
+        <div class="container">
+            <h2 class="wow slideInRight">
+                <a href="javascript:void(0)"
+                   onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">我要出租</a>
+            </h2>
+        </div>
+    </header>
 </div>
+<div id="light" class="white_content">
+    <form>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div>
+                            <label>地点</label>
+                        </div>
+                        <select class="form-control" name="province"></select>
+                        <select class="form-control" name="city"></select>
+                        <select class="form-control" name="district"></select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div>
+                            <label>房间具体信息</label>
+                        </div>
+                        <div class="col-xs-2">
+                            房间大小:<input type="number" class="form-control" id="size" placeholder="请选择房间大小">
+                        </div>
+                        <div class="col-xs-2">
+                            浴室:<input type="number" class="form-control" id="bathroom" placeholder="请输入浴室个数">个
+                        </div>
+                        <div class="col-xs-2">
+                            床:<input type="number" class="form-control" id="beds" placeholder="请输入床个数">张
+                        </div>
+                        <div class="col-xs-2">
+                            卫生间:<input type="number" class="form-control" id="singleWc" placeholder="请输入卫生间数">个
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div>
+                            <label>房间描述(不超过20个字)</label>
+                        </div>
+                        <input type="text" class="form-control" maxlength="20" id="description" placeholder="请输入房间描述">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <div>
+                            <label>房间价格</label>
+                        </div>
+                        <div class="col-xs-2">
+                            <input type="number" class="form-control" step="10" id="price" placeholder="请输入每月房租">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-default">提交房源</button>
+    </form>
+
+    <button onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"
+            style="float: right">
+        关闭窗口
+    </button>
+</div>
+<div id="fade" class="black_overlay"></div>
 
 <div th:include="include/header ::footer "></div>
 <a href="#top" id="scroll-top"><i class="fa fa-angle-up"></i></a>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script language="javascript" defer>
+    new PCAS("province", "city", "district");
+</script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.migrate.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>

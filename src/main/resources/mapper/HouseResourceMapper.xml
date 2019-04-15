@@ -37,4 +37,10 @@
     <select id="getHouseResourceIdListByUserId" parameterType="Long" resultType="Long">
         select id from house where belonguser=#{id}
     </select>
+    <update id="export" parameterType="Long">
+        update house set status=0 where id=#{id}
+    </update>
+    <update id="unload" parameterType="Long">
+        update house set status=1 where id=#{id}
+    </update>
 </mapper>

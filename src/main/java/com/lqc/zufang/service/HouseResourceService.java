@@ -36,4 +36,15 @@ public interface HouseResourceService {
      */
     List<Long> getHouseResourceIdListByUserId(Long id);
 
+    /**
+     * 上架房源
+     * @param houseId
+     */
+    void export(Long houseId);
+
+    /**
+     * 下架房源
+     * @param houseId
+     */
+    void unload(Long houseId);
 }

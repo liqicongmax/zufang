@@ -5,6 +5,7 @@ import com.lqc.zufang.entity.User;
 import com.lqc.zufang.service.CollectService;
 import com.lqc.zufang.service.HouseResourceService;
 import com.lqc.zufang.service.UserService;
+import com.lqc.zufang.util.LoginUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -66,14 +67,31 @@ public class UserController {
 
     /**
      * 跳转到我要出租(即登记房源)的页面
+     * 展示文字数据在页面上
      * @return
      */
     @RequestMapping("/toRent")
     //@PreAuthorize("hasAnyRole('ROLE_USER','Role_ADMIN')")
-    public String toRent(){
+    public String toRent(@RequestParam("id")Long id,Model model){
+        List<HouseResource> houseResourceList=houseResourceService.getHouseResourceListByUserId(id);
+        model.addAttribute("houseList",houseResourceList);
         return "admin/rent";
     }
-
+    @RequestMapping("/toPicEdit")
+    public String toPicEdit(@RequestParam("houseId")Long id,Model model){
+        model.addAttribute("houseId",id);
+        return "admin/PicEditor";
+    }
+    @RequestMapping("/export")
+    public String export(@RequestParam("houseId")Long id,HttpSession session){
+        houseResourceService.export(id);
+        return "redirect:toRent?id="+ LoginUtils.getUser(session).getId();
+    }
+    @RequestMapping("/unload")
+    public String unload(@RequestParam("houseId")Long id,HttpSession session){
+        houseResourceService.unload(id);
+        return "redirect:toRent?id="+LoginUtils.getUser(session).getId();
+    }
     /**
      * 整合获取的房源列表,生成3个为一行的list集合
      * @param user
