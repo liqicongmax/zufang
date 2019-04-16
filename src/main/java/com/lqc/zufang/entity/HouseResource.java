@@ -1,11 +1,17 @@
 package com.lqc.zufang.entity;
 
 import com.lqc.zufang.base.BaseDto;
+import lombok.*;
+import lombok.Data;
 
 /**
  * @author liqicong@myhexin.com
  * @date 2019/2/26 17:30
  */
+@Data
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class HouseResource extends BaseDto {
 
     private static final long serialVersionUID = 8981586382428821589L;
@@ -30,163 +36,4 @@ public class HouseResource extends BaseDto {
     private Integer singleWc;
     private Integer collect;
 
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public Integer getCollect() {
-        return collect;
-    }
-
-    public void setCollect(Integer collect) {
-        this.collect = collect;
-    }
-
-    public Integer getAircondition() {
-        return aircondition;
-    }
-
-    public void setAircondition(Integer airCondition) {
-        this.aircondition = airCondition;
-    }
-
-    public Integer getTv() {
-        return tv;
-    }
-
-    public void setTv(Integer tv) {
-        this.tv = tv;
-    }
-
-    public Integer getKitchen() {
-        return kitchen;
-    }
-
-    public void setKitchen(Integer kitchen) {
-        this.kitchen = kitchen;
-    }
-
-    public Integer getFan() {
-        return fan;
-    }
-
-    public void setFan(Integer fan) {
-        this.fan = fan;
-    }
-
-    public Integer getSofa() {
-        return sofa;
-    }
-
-    public void setSofa(Integer sofa) {
-        this.sofa = sofa;
-    }
-
-    public Integer getSingleWc() {
-        return singleWc;
-    }
-
-    public void setSingleWc(Integer singleWc) {
-        this.singleWc = singleWc;
-    }
-
-    public Integer getBeds() {
-        return beds;
-    }
-
-    public void setBeds(Integer beds) {
-        this.beds = beds;
-    }
-
-    public Integer getBathroom() {
-        return bathroom;
-    }
-
-    public void setBathroom(Integer bathroom) {
-        this.bathroom = bathroom;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getLike() {
-        return like;
-    }
-
-    public void setLike(Integer like) {
-        this.like = like;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Long getBelonguser() {
-        return belonguser;
-    }
-
-    public void setBelonguser(Long belongUser) {
-        this.belonguser = belongUser;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
 }

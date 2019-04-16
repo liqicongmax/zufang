@@ -23,7 +23,7 @@
 </head>
 <style>
     a:visited {
-        color: white;
+        color: blue;
     }
 </style>
 <body class="">
@@ -38,34 +38,82 @@
 <div class="container">
     <header class="section-header home-section-header text-center">
         <div class="container">
-            <h2 class="wow slideInRight">我的出租</h2>
+            <h2 class="wow slideInRight">房源图片</h2>
         </div>
     </header>
-
-
+    <div class="span6">
+        <form th:action="@{/topImageUpload}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <h4>添加用于首页展示图片</h4>
+                <input type="file" id="image" name="image" accept="image/*">
+                <input type="hidden" id="houseId" th:value="${houseId}">
+                <p class="help-block">只支持上传一张图片作为首页图</p>
+            </div>
+            <!--TODO-->
+            <!--这里用onsubmit进行提交前的判断,如果有一张图了就不让提交-->
+            <button type="submit" class="btn">上传图片</button>
+        </form>
+        <table class="table table-bordered">
+            <tr>
+                <th>编号</th>
+                <th>图片</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td th:text="${houseId}"></td>
+                <td><img th:src="@{'/images/house/house' +${houseId}+ '.jpg'}"></td>
+                <td><a href="#">删除图片</a></td>
+            </tr>
+        </table>
+    </div>
+    <h5 class="page-header"></h5>
+    <hr>
+    <h5 class="page-header"></h5>
+    <div class="span6">
+        <form enctype="multipart/form-data">
+            <div class="form-group">
+                <h4>添加房源的图片介绍</h4>
+                <input type="file" id="imageDetail" accept="image/*">
+                <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <button type="submit" class="btn">上传图片</button>
+        </form>
+        <table class="table table-bordered">
+            <tr>
+                <th>编号</th>
+                <th>图片</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><a href="#">删除图片</a></td>
+            </tr>
+        </table>
+    </div>
 
 
 </div>
 
-    <div th:include="include/header ::footer "></div>
-    <a href="#top" id="scroll-top"><i class="fa fa-angle-up"></i></a>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.migrate.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="plugins/slick-nav/jquery.slicknav.min.js"></script>
-    <script src="plugins/slick/slick.min.js"></script>
-    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="plugins/tweetie/tweetie.js"></script>
-    <script src="plugins/forms/jquery.form.min.js"></script>
-    <script src="plugins/forms/jquery.validate.min.js"></script>
-    <script src="plugins/modernizr/modernizr.custom.js"></script>
-    <script src="plugins/wow/wow.min.js"></script>
-    <script src="plugins/zoom/zoom.js"></script>
-    <script src="plugins/mixitup/mixitup.min.js"></script>
-    <!---<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyD2MtZynhsvwI2B40juK6SifR_OSyj4aBA&libraries=places"></script>--->
-    <script src="plugins/whats-nearby/source/WhatsNearby.js"></script>
-    <script src="assets/js/theme.js"></script>
+<div th:include="include/header ::footer "></div>
+<a href="#top" id="scroll-top"><i class="fa fa-angle-up"></i></a>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.migrate.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="plugins/slick-nav/jquery.slicknav.min.js"></script>
+<script src="plugins/slick/slick.min.js"></script>
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="plugins/tweetie/tweetie.js"></script>
+<script src="plugins/forms/jquery.form.min.js"></script>
+<script src="plugins/forms/jquery.validate.min.js"></script>
+<script src="plugins/modernizr/modernizr.custom.js"></script>
+<script src="plugins/wow/wow.min.js"></script>
+<script src="plugins/zoom/zoom.js"></script>
+<script src="plugins/mixitup/mixitup.min.js"></script>
+<!---<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyD2MtZynhsvwI2B40juK6SifR_OSyj4aBA&libraries=places"></script>--->
+<script src="plugins/whats-nearby/source/WhatsNearby.js"></script>
+<script src="assets/js/theme.js"></script>
 
 </body>
 </html>

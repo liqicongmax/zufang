@@ -47,4 +47,10 @@ public interface HouseResourceService {
      * @param houseId
      */
     void unload(Long houseId);
+
+    /**
+     * 注册房源
+     * @param houseResource
+     */
+    void registHouseDetail(HouseResource houseResource);
 }

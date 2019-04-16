@@ -25,9 +25,6 @@
             and price &lt; #{high}
         </if>
     </select>
-    <insert id="insertCollect" parameterType="com.lqc.zufang.entity.Collect">
-        insert into collect(userid, houseid) values(#{userId},#{houseId})
-    </insert>
     <select id="getCollectListByUserId" parameterType="Long" resultType="Long">
         select houseid  from collect where userid=#{id}
     </select>
@@ -43,4 +40,8 @@
     <update id="unload" parameterType="Long">
         update house set status=1 where id=#{id}
     </update>
+    <insert id="registHouseDetail" parameterType="com.lqc.zufang.entity.HouseResource">
+        insert into house(belonguser,province,city,district,place,,size,bathroom,beds,singlewc,description,price)values
+        (#{belonguser},#{province},#{city},#{district},#{place},#{size},#{bathroom},#{beds},#{singleWc},#{description},#{price})
+    </insert>
 </mapper>

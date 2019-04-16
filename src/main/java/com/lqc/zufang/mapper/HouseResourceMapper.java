@@ -21,4 +21,5 @@ public interface HouseResourceMapper {
     List<Long> getHouseResourceIdListByUserId(Long id);
     void export(Long id);
     void unload(Long id);
+    void registHouseDetail(HouseResource houseResource);
 }

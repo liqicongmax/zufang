@@ -82,4 +82,14 @@ public class HouseResourceServiceImpl implements HouseResourceService {
     public void unload(Long houseId) {
         houseResourceMapper.unload(houseId);
     }
+
+    /**
+     * 注册房源
+     *
+     * @param houseResource
+     */
+    @Override
+    public void registHouseDetail(HouseResource houseResource) {
+        houseResourceMapper.registHouseDetail(houseResource);
+    }
 }
