@@ -46,7 +46,7 @@
             <div class="form-group">
                 <h4>添加用于首页展示图片</h4>
                 <input type="file" id="image" name="image" accept="image/*">
-                <input type="hidden" id="houseId" th:value="${houseId}">
+                <input type="hidden" id="houseId1" th:value="${houseId}">
                 <p class="help-block">只支持上传一张图片作为首页图</p>
             </div>
             <!--TODO-->
@@ -59,9 +59,9 @@
                 <th>图片</th>
                 <th>操作</th>
             </tr>
-            <tr>
+            <tr id="display">
                 <td th:text="${houseId}"></td>
-                <td><img th:src="@{'/images/house/house' +${houseId}+ '.jpg'}"></td>
+                <td><img name="img" th:src="@{'/images/house/house' +${houseId}+ '.jpg'}"></td>
                 <td><a href="#">删除图片</a></td>
             </tr>
         </table>
@@ -70,10 +70,11 @@
     <hr>
     <h5 class="page-header"></h5>
     <div class="span6">
-        <form enctype="multipart/form-data">
+        <form enctype="multipart/form-data" th:action="@{/detailImageUpload}" method="post">
             <div class="form-group">
                 <h4>添加房源的图片介绍</h4>
-                <input type="file" id="imageDetail" accept="image/*">
+                <input type="file" id="imageDetail" name="image" accept="image/*">
+                <input type="hidden" id="houseId2" name="houseId2" th:value="${houseId}"/>
                 <p class="help-block">Example block-level help text here.</p>
             </div>
             <button type="submit" class="btn">上传图片</button>
@@ -84,11 +85,13 @@
                 <th>图片</th>
                 <th>操作</th>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td><a href="#">删除图片</a></td>
-            </tr>
+            <div th:each="id:${ids}">
+                <tr>
+                    <td th:text="${id}"></td>
+                    <td><img th:src="@{'/images/houseDetail/house-' +${houseId}+'-'+${id}+ '.jpg'}"></td>
+                    <td><a href="#">删除图片</a></td>
+                </tr>
+            </div>
         </table>
     </div>
 

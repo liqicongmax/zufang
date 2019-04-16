@@ -17,6 +17,10 @@ function beforeRegist() {
     if(!checkWc()){
         return false;
     }
+    if(!checkPlace()){
+        return false;
+    }
+
     return true;
 }
 function checkSize(){

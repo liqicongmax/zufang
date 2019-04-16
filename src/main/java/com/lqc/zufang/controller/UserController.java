@@ -1,10 +1,12 @@
 package com.lqc.zufang.controller;
 
 import com.lqc.zufang.entity.HouseResource;
+import com.lqc.zufang.entity.Image;
 import com.lqc.zufang.entity.UploadImageFile;
 import com.lqc.zufang.entity.User;
 import com.lqc.zufang.service.CollectService;
 import com.lqc.zufang.service.HouseResourceService;
+import com.lqc.zufang.service.ImageService;
 import com.lqc.zufang.service.UserService;
 import com.lqc.zufang.util.ImageUtil;
 import com.lqc.zufang.util.LoginUtils;
@@ -13,16 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,8 @@ public class UserController {
     HouseResourceService houseResourceService;
     @Autowired
     CollectService collectService;
+    @Autowired
+    ImageService imageService;
 
     /**
      * 跳转到用户中心页面时要展示用户的收藏列表
@@ -98,7 +102,10 @@ public class UserController {
     @RequestMapping("/toPicEdit")
     public String toPicEdit(@RequestParam("houseId") Long id, Model model) {
         model.addAttribute("houseId", id);
-        return "admin/PicEditor";
+        //查询出当前房源下所有的图片的id列表
+        List<Long> ids = imageService.getIdListByHid(id);
+        model.addAttribute("ids", ids);
+        return "admin/picEditor";
     }
 
     /**
@@ -173,7 +180,7 @@ public class UserController {
 
     @RequestMapping("/topImageUpload")
     public String topImageUpload(HttpSession session, HttpServletRequest request, UploadImageFile file,
-                                 @RequestParam("houseId") Long houseId) throws IllegalStateException, IOException {
+                                 @RequestParam("houseId1") Long houseId) throws IllegalStateException, IOException {
         String fileName = "house" + houseId.toString() + ".jpg";
         String imageFolder;
         imageFolder = session.getServletContext().getRealPath("images/house");
@@ -188,7 +195,42 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:toPicEdit?houseId="+houseId;
+        return "redirect:toPicEdit?houseId=" + houseId;
+    }
+
+    @RequestMapping(value = "/detailImageUpload", method = RequestMethod.POST)
+    public String detailImageUpload(HttpSession session, UploadImageFile imageDetail, @RequestParam("houseId2") String houseId) throws IllegalStateException, FileNotFoundException {
+        //创建新的图片信息并保存到数据库
+        System.out.println("houseId==" + houseId);
+        Image image = new Image();
+        image.setHid(Long.valueOf(houseId));
+        imageService.addImage(image);
+        Long picId=image.getId();
+        System.out.println("asdsad"+image.getId());
+        //接收图片文件,并保存到文件夹文件名为house-houseid-图片id
+        String fileName = "house-" + houseId.toString() +"-"+ picId.toString() + ".jpg";
+        String imageFolder;
+//        imageFolder = //session.getServletContext().getRealPath("static/images/houseDetail");
+//        ClassUtils.getDefaultClassLoader().getResource("images/houseDetail").getPath();
+
+        String serverpath = ResourceUtils.getURL("classpath:static/images/houseDetail").getPath().replace("%20", " ").replace('/', '\\');
+        imageFolder = serverpath.substring(1);//从路径字符串中取出工程路径
+
+        System.out.println(imageFolder);
+
+
+        File f = new File(imageFolder, fileName);
+        f.getParentFile().mkdir();
+        try {
+            imageDetail.getImage().transferTo(f);
+            BufferedImage img = ImageUtil.change2jpg(f);
+            ImageIO.write(img, "jpg", f);
+            File f_result = new File(imageFolder, fileName);
+            ImageUtil.resizeImage(f, 217, 190, f_result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:toPicEdit?houseId=" + houseId;
     }
 
     /**
