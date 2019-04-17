@@ -105,6 +105,9 @@ public class UserController {
         //查询出当前房源下所有的图片的id列表
         List<Long> ids = imageService.getIdListByHid(id);
         model.addAttribute("ids", ids);
+        //查询出当前房源的首页展示图片的id
+        Long idd=imageService.getTopImageId(id);
+        model.addAttribute("idd",idd);
         return "admin/picEditor";
     }
 
@@ -179,15 +182,24 @@ public class UserController {
     }
 
     @RequestMapping("/topImageUpload")
-    public String topImageUpload(HttpSession session, HttpServletRequest request, UploadImageFile file,
-                                 @RequestParam("houseId1") Long houseId) throws IllegalStateException, IOException {
-        String fileName = "house" + houseId.toString() + ".jpg";
+    public String topImageUpload(HttpSession session, HttpServletRequest request,UploadImageFile image,
+                                 @RequestParam("houseId1") Long houseId,@RequestParam(value = "status",defaultValue = "2")Long status) throws IllegalStateException, IOException {
+        System.out.println("houseId==" + houseId);
+        Image image1 = new Image();
+        image1.setHid(Long.valueOf(houseId));
+        image1.setStatus(status);
+        imageService.addImage(image1);
+        Long picId=image1.getId();
+        System.out.println("图片id"+image1.getId());
+        String fileName = "house-" + houseId.toString()+"-"+picId+ ".jpg";
         String imageFolder;
-        imageFolder = session.getServletContext().getRealPath("images/house");
+        String serverpath = ResourceUtils.getURL("classpath:static/images/house").getPath().replace("%20", " ").replace('/', '\\');
+        imageFolder = serverpath.substring(1);//从路径字符串中取出工程路径
+        System.out.println("首页图路径"+imageFolder);
         File f = new File(imageFolder, fileName);
         f.getParentFile().mkdir();
         try {
-            file.getImage().transferTo(f);
+            image.getImage().transferTo(f);
             BufferedImage img = ImageUtil.change2jpg(f);
             ImageIO.write(img, "jpg", f);
             File f_result = new File(imageFolder, fileName);
@@ -210,9 +222,6 @@ public class UserController {
         //接收图片文件,并保存到文件夹文件名为house-houseid-图片id
         String fileName = "house-" + houseId.toString() +"-"+ picId.toString() + ".jpg";
         String imageFolder;
-//        imageFolder = //session.getServletContext().getRealPath("static/images/houseDetail");
-//        ClassUtils.getDefaultClassLoader().getResource("images/houseDetail").getPath();
-
         String serverpath = ResourceUtils.getURL("classpath:static/images/houseDetail").getPath().replace("%20", " ").replace('/', '\\');
         imageFolder = serverpath.substring(1);//从路径字符串中取出工程路径
 
@@ -233,6 +242,18 @@ public class UserController {
         return "redirect:toPicEdit?houseId=" + houseId;
     }
 
+    /**
+     * 根据不同的类型来删除图片文件
+     * @param id
+     * @param type
+     * @return
+     */
+    @RequestMapping("/deletePic")
+    public String deletePic(@RequestParam(value = "id",required = false)Long id,@RequestParam("houseId")Long houseId)throws FileNotFoundException{
+        //只要在数据库里修改状态设置为不显示就行,即状态为0
+        imageService.deletePic(id);
+        return "redirect:toPicEdit?houseId=" + houseId;
+    }
     /**
      * 整合获取的房源列表,生成3个为一行的list集合
      *

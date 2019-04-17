@@ -7,9 +7,21 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into image(hid) values (#{hid})
+        <if test="status!=null">
+            insert into image(hid,status) values (#{hid},#{status})
+        </if>
+        <if test="status==null">
+            insert into image(hid) values (#{hid})
+        </if>
+
     </insert>
     <select id="getIdListByHid" parameterType="Long" resultType="Long">
-        select id from image where hid=#{hid}
+        select id from image where hid=#{hid} and status=1
+    </select>
+    <update id="deletePic" parameterType="Long">
+        update image set status=0 where id=#{id}
+    </update>
+    <select id="getTopImageId" parameterType="Long" resultType="Long">
+        select id from image where hid=#{houseId} and status=2
     </select>
 </mapper>

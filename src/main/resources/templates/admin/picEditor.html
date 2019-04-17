@@ -42,30 +42,53 @@
         </div>
     </header>
     <div class="span6">
-        <form th:action="@{/topImageUpload}" method="post" enctype="multipart/form-data">
+        <form th:action="@{/topImageUpload}" method="post" enctype="multipart/form-data" onsubmit="return beforeUpload();">
             <div class="form-group">
                 <h4>添加用于首页展示图片</h4>
                 <input type="file" id="image" name="image" accept="image/*">
-                <input type="hidden" id="houseId1" th:value="${houseId}">
+                <input type="hidden" id="houseId1" name="houseId1" th:value="${houseId}">
+                <input type="hidden" id="status" name="status" th:value="2">
                 <p class="help-block">只支持上传一张图片作为首页图</p>
             </div>
             <!--TODO-->
             <!--这里用onsubmit进行提交前的判断,如果有一张图了就不让提交-->
             <button type="submit" class="btn">上传图片</button>
         </form>
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="test">
             <tr>
-                <th>编号</th>
+                <th>房源编号</th>
                 <th>图片</th>
                 <th>操作</th>
             </tr>
-            <tr id="display">
-                <td th:text="${houseId}"></td>
-                <td><img name="img" th:src="@{'/images/house/house' +${houseId}+ '.jpg'}"></td>
-                <td><a href="#">删除图片</a></td>
-            </tr>
+            <div th:if="${idd}!=null">
+                <tr id="display">
+                    <td th:text="${houseId}"></td>
+                    <td><img name="img" th:src="@{'/images/house/house-' +${houseId}+'-'+${idd}+'.jpg'}"></td>
+                    <td><a th:href="@{/deletePic(type='single',houseId=${houseId},id=${idd} )}"
+                           onclick="return confirmAct()">删除图片</a></td>
+                </tr>
+            </div>
         </table>
     </div>
+    <script type="text/javascript" language="javascript">
+        function confirmAct() {
+            if (confirm('确定要执行此操作吗?')) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+    <script>
+        function beforeUpload() {
+            var tab = document.getElementById("test");
+            var rows = tab.rows.length;
+            if (rows == 2) {
+                alert("只能添加一张图片");
+                return false;
+            }
+            return true;
+        }
+    </script>
     <h5 class="page-header"></h5>
     <hr>
     <h5 class="page-header"></h5>
@@ -89,7 +112,7 @@
                 <tr>
                     <td th:text="${id}"></td>
                     <td><img th:src="@{'/images/houseDetail/house-' +${houseId}+'-'+${id}+ '.jpg'}"></td>
-                    <td><a href="#">删除图片</a></td>
+                    <td><a th:href="@{/deletePic(id=${id},type='detail',houseId=${houseId} )}" onclick="return confirmAct()">删除图片</a></td>
                 </tr>
             </div>
         </table>

@@ -15,4 +15,5 @@ import lombok.NoArgsConstructor;
 public class Image extends BaseDto {
     private static final long serialVersionUID = 1360092898375239601L;
     private Long hid;//所属的房源id
+    private Long status;
 }

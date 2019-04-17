@@ -13,4 +13,6 @@ import java.util.List;
 public interface ImageMapper {
     Long addImage(Image image);
     List<Long> getIdListByHid(Long hid);
+    void deletePic(Long id);
+    Long getTopImageId(Long hosueId);
 }

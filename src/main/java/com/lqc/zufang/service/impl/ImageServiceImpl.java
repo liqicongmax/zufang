@@ -25,4 +25,14 @@ public class ImageServiceImpl implements ImageService {
     public List<Long> getIdListByHid(Long hid) {
         return imageMapper.getIdListByHid(hid);
     }
+
+    @Override
+    public void deletePic(Long id) {
+        imageMapper.deletePic(id);
+    }
+
+    @Override
+    public Long getTopImageId(Long houseId) {
+        return imageMapper.getTopImageId(houseId);
+    }
 }

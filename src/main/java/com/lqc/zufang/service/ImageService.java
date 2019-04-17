@@ -11,4 +11,6 @@ import java.util.List;
 public interface ImageService {
     Long addImage(Image image);
     List<Long> getIdListByHid(Long Hid);
+    void deletePic(Long id);
+    Long getTopImageId(Long hosueId);
 }
