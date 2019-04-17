@@ -1,5 +1,7 @@
 package com.lqc.zufang.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
 import com.lqc.zufang.entity.HouseResource;
 import com.lqc.zufang.entity.Image;
 import com.lqc.zufang.entity.UploadImageFile;
@@ -113,7 +115,7 @@ public class UserController {
 
     /**
      * 发布房源
-     *
+     *需要检测一下是否有首页图片和详细图片了
      * @param id
      * @param session
      * @return
@@ -122,6 +124,20 @@ public class UserController {
     public String export(@RequestParam("houseId") Long id, HttpSession session) {
         houseResourceService.export(id);
         return "redirect:toRent?id=" + LoginUtils.getUser(session).getId();
+    }
+    @RequestMapping("/checkImage")
+    @ResponseBody
+    public JSONObject checkImage(@RequestParam("houseId") Long houseId){
+        System.out.println("=======================================================");
+        Boolean result=false;
+        List<Long> idlist=imageService.getIdListByHid(houseId);
+        Long topImageId=imageService.getTopImageId(houseId);
+        if(topImageId!=null&&!idlist.isEmpty()){
+            result=true;
+        }
+        JSONObject res=new JSONObject();
+        res.put("data",result);
+        return res;
     }
 
     /**
@@ -245,7 +261,7 @@ public class UserController {
     /**
      * 根据不同的类型来删除图片文件
      * @param id
-     * @param type
+     * @param houseId
      * @return
      */
     @RequestMapping("/deletePic")
@@ -290,5 +306,22 @@ public class UserController {
         return list;
     }
 
+    /**
+     * 根据房源id判断房源是否已发布
+     * @param houseId
+     * @return
+     */
+    @RequestMapping("/isExported")
+    @ResponseBody
+    public JSONObject isExported(@RequestParam("houseId") Long houseId){
+        Boolean data=false;
+        Integer status=houseResourceService.getHouseResourceById(houseId).getStatus();
+        if(status==0){
+            data=true;
+        }
+        JSONObject res=new JSONObject();
+        res.put("data",data);
+        return res;
+    }
 
 }

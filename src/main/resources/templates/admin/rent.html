@@ -95,7 +95,9 @@
                         <a th:href="@{/toPicEdit(houseId=${house.getId()})}">添加...图片</a>
                     </td>
                     <td>
-                        <a th:if="${house.getStatus()==1}" th:href="@{/export(houseId=${house.getId()})}">发布</a>
+                        <a th:if="${house.getStatus()==1}" th:href="@{/export(houseId=${house.getId()})}"
+                           th:onclick="|javascript:return beforeExport(${house.getId()});|">发布</a>
+
                         <a th:if="${house.getStatus()==0}" th:href="@{/unload(houseId=${house.getId()})}">下架</a>
                     </td>
                 </tr>
@@ -103,6 +105,28 @@
             </table>
         </div>
     </div>
+    <script>
+        function beforeExport(houseId) {
+            var ress=false;
+            //var houseId = $("#houseId").val();
+            $.ajax({
+                async: false,
+                type: 'GET',
+                dataType:'json',
+                url: '/checkImage',
+                data: {
+                    houseId:houseId,
+                },
+                success:function (res) {
+                    if(res.data==false){
+                        alert("请完善图片信息后再上架!");
+                    }
+                    ress=res.data;
+                }
+            });
+            return ress;
+        }
+    </script>
     <header class="section-header home-section-header text-center">
         <div class="container">
             <h2 class="wow slideInRight">
@@ -128,7 +152,8 @@
                         <div>
                             <label>具体地址</label>
                         </div>
-                        <input type="text" class="form-control" id="place" name="place" placeholder="请输入具体地址(xx小区xx单元xxx)">
+                        <input type="text" class="form-control" id="place" name="place"
+                               placeholder="请输入具体地址(xx小区xx单元xxx)">
                         <div><span id="message7"></span></div>
                     </div>
                 </td>
