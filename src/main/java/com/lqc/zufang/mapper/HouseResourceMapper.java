@@ -22,4 +22,5 @@ public interface HouseResourceMapper {
     void export(Long id);
     void unload(Long id);
     void registHouseDetail(HouseResource houseResource);
+    void updateHouseDetail(HouseResource houseResource);
 }

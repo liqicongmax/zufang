@@ -44,4 +44,8 @@
         insert into house(belonguser,province,city,district,place,,size,bathroom,beds,singlewc,description,price)values
         (#{belonguser},#{province},#{city},#{district},#{place},#{size},#{bathroom},#{beds},#{singleWc},#{description},#{price})
     </insert>
+    <update id="updateHouseDetail" parameterType="com.lqc.zufang.entity.HouseResource">
+        update house set province=#{province},city=#{city},district=#{district},place=#{place},size=#{size},bathroom=#{bathroom},beds=#{beds},singlewc=#{singleWc},description=#{description},price=#{price}
+        where id=#{id}
+    </update>
 </mapper>

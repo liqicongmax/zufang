@@ -1,4 +1,7 @@
 function beforeRegist() {
+    if(!checkRemotePlace()){
+        return false;
+    }
     if(!checkSize()){
         return false;
     }
@@ -22,6 +25,18 @@ function beforeRegist() {
     }
 
     return true;
+}
+function checkRemotePlace() {
+    var province=$("#province").val();
+    var city=$("#city").val();
+    var district=$("#district").val();
+    if(province == ""||city==""||district==""){
+        $("#message8").html("*请选择正确的地址！");
+        return false;
+    }else{
+        $("#message8").html("");
+        return true;
+    }
 }
 function checkSize(){
     var size=$("#size").val();

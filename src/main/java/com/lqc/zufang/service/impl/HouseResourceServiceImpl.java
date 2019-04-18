@@ -92,4 +92,9 @@ public class HouseResourceServiceImpl implements HouseResourceService {
     public void registHouseDetail(HouseResource houseResource) {
         houseResourceMapper.registHouseDetail(houseResource);
     }
+
+    @Override
+    public void updateHouseDetail(HouseResource houseResource) {
+        houseResourceMapper.updateHouseDetail(houseResource);
+    }
 }

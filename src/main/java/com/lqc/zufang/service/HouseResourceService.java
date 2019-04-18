@@ -53,4 +53,6 @@ public interface HouseResourceService {
      * @param houseResource
      */
     void registHouseDetail(HouseResource houseResource);
+
+    void updateHouseDetail(HouseResource houseResource);
 }

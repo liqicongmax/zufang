@@ -55,7 +55,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     public String userCenter(@RequestParam("id") Long id, Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
@@ -153,20 +153,22 @@ public class UserController {
         return "redirect:toRent?id=" + LoginUtils.getUser(session).getId();
     }
 
+    @RequestMapping("/getHouseResource")
+    @ResponseBody
+    public JSONObject getHouseResource(@RequestParam("houseId")Long houseId){
+        HouseResource h=houseResourceService.getHouseResourceById(houseId);
+        JSONObject res=new JSONObject();
+        res.put("size",h.getSize());
+        res.put("bathroom",h.getBathroom());
+        res.put("beds",h.getBeds());
+        res.put("singleWc",h.getSingleWc());
+        res.put("description",h.getDescription());
+        res.put("price",h.getPrice());
+        res.put("place",h.getPlace());
+        return res;
+    }
     /**
      * 登记房源的具体信息
-     *
-     * @param province
-     * @param city
-     * @param district
-     * @param size
-     * @param bathroom
-     * @param beds
-     * @param singleWc
-     * @param description
-     * @param price
-     * @param place
-     * @param session
      * @return
      */
     @RequestMapping("/registHouseDetail")
@@ -180,7 +182,8 @@ public class UserController {
                                     @RequestParam(value = "description") String description,
                                     @RequestParam(value = "price") Integer price,
                                     @RequestParam(value = "place") String place,
-                                    HttpSession session) {
+                                    HttpSession session,
+                                    @RequestParam(value = "forHouseId",required = false)Long houseId) {
         HouseResource houseResource = new HouseResource();
         houseResource.setProvince(province);
         houseResource.setCity(city);
@@ -193,7 +196,13 @@ public class UserController {
         houseResource.setPrice(price);
         houseResource.setBelonguser(LoginUtils.getUser(session).getId());
         houseResource.setPlace(place);
-        houseResourceService.registHouseDetail(houseResource);
+        if(houseId==null) {
+            houseResourceService.registHouseDetail(houseResource);
+        }
+        if(houseId!=null){
+            houseResource.setId(houseId);
+            houseResourceService.updateHouseDetail(houseResource);
+        }
         return "redirect:toRent?id=" + LoginUtils.getUser(session).getId();
     }
 

@@ -12,7 +12,8 @@
                                 for
                                 Free
                             </button>
-                            <p class="timing-in-header">工作时间: 周一至周六 - 8am to 6pm</p><p th:text="${session.address.region}+${session.address.city}"></p>
+                            <p class="timing-in-header">工作时间: 周一至周六 - 8am to 6pm</p>
+                            <p th:text="${session.address.region}+${session.address.city}"></p>
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -48,11 +49,10 @@
                 <div class="col-md-6 col-sm-8">
                     <nav id="site-nav" class="nav navbar-default">
                         <ul class="nav navbar-nav">
-                            <li><a th:href="@{/index}">Home</a></li>
-                            <li><a href="#">Listing</a></li>
-                            <li><a href="#">Property</a></li>
-                            <li><a href="#">Gallery</a></li>
-                            <li><a href="#">contact</a></li>
+                            <li><a th:href="@{/index}">首页</a></li>
+                            <li th:if="${session.user}!=null"><a th:href="@{/toMyAccount}">账户中心</a></li>
+                            <li th:if="${session.user}!=null"><a th:href="@{/user(id=${session.user.id})}">我的收藏</a></li>
+                            <li><a href="https://github.com/liqicongmax/zufang">联系我</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -109,15 +109,15 @@
             </div>
         </div>
         <!--<div class="site-footer-bottom">-->
-            <!--<div class="container">-->
-                <!--<nav class="footer-nav pull-right wow slideInLeft">-->
-                    <!--<ul>-->
-                        <!--<li><a href="#">Terms & Conditions</a></li>-->
-                        <!--<li><a href="#">Pricing</a></li>-->
-                        <!--<li><a href="#">Contact</a></li>-->
-                    <!--</ul>-->
-                <!--</nav>-->
-            <!--</div>-->
+        <!--<div class="container">-->
+        <!--<nav class="footer-nav pull-right wow slideInLeft">-->
+        <!--<ul>-->
+        <!--<li><a href="#">Terms & Conditions</a></li>-->
+        <!--<li><a href="#">Pricing</a></li>-->
+        <!--<li><a href="#">Contact</a></li>-->
+        <!--</ul>-->
+        <!--</nav>-->
+        <!--</div>-->
         <!--</div>-->
     </footer>
 </div>

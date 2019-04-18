@@ -83,6 +83,7 @@
                     <th>价格</th>
                     <th>添加具体图片...</th>
                     <th>发布房源</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody th:each="house:${houseList}">
@@ -100,12 +101,41 @@
 
                         <a th:if="${house.getStatus()==0}" th:href="@{/unload(houseId=${house.getId()})}">下架</a>
                     </td>
+                    <td><a class="btn btn-default" href="javascript:void(0)" th:onclick="|javascript:getHouseResource(${house.getId()})|"></a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <script>
+        function getHouseResource(houseId) {
+            $.ajax({
+                async: false,
+                type: 'GET',
+                dataType:'json',
+                url: '/getHouseResource',
+                data: {
+                    houseId:houseId,
+                },
+                success:function (res) {
+                    document.getElementById('size').value=res.size;
+                    document.getElementById('bathroom').value=res.bathroom;
+                    document.getElementById('beds').value=res.beds;
+                    document.getElementById('singleWc').value=res.singleWc;
+                    document.getElementById('description').value=res.description;
+                    document.getElementById('price').value=res.price;
+                    document.getElementById('place').value=res.place;
+                    document.getElementById('forHouseId').value=houseId;
+                }
+            });
+            //var ress=null;
+            //把隐藏的表单显示出来
+            document.getElementById('light').style.display='block';
+            document.getElementById('fade').style.display='block';
+            //通过ajax获取对象,然后把对象的值赋予到input框的value里面
+
+
+        }
         function beforeExport(houseId) {
             var ress=false;
             //var houseId = $("#houseId").val();
@@ -149,9 +179,11 @@
                         <select class="form-control" name="province" id="province"></select>
                         <select class="form-control" name="city" id="city"></select>
                         <select class="form-control" name="district" id="district"></select>
+                        <div><span id="message8"></span></div>
                         <div>
                             <label>具体地址</label>
                         </div>
+                        <input type="hidden" id="forHouseId" name="forHouseId">
                         <input type="text" class="form-control" id="place" name="place"
                                placeholder="请输入具体地址(xx小区xx单元xxx)">
                         <div><span id="message7"></span></div>
