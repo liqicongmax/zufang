@@ -77,10 +77,10 @@ public class LoginController {
         user.setHouseIds(houseIds);
         model.addAttribute("result", brd);
         session.setAttribute("user",user);
-        Integer userId=user.getId().intValue();
-        Integer roleId=userRoleService.listByUserId(userId).getRoleId().intValue();
-        Role role=roleService.selectById(roleId);
-        System.out.println(role.getName());
+//        Integer userId=user.getId().intValue();
+//        Integer roleId=userRoleService.listByUserId(userId).getRoleId().intValue();
+//        Role role=roleService.selectById(roleId);
+//        System.out.println(role.getName());
         return "redirect:index";
     }
 

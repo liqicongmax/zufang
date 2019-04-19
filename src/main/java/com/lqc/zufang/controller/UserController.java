@@ -12,6 +12,8 @@ import com.lqc.zufang.service.ImageService;
 import com.lqc.zufang.service.UserService;
 import com.lqc.zufang.util.ImageUtil;
 import com.lqc.zufang.util.LoginUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -47,6 +49,7 @@ public class UserController {
     @Autowired
     ImageService imageService;
 
+    private Logger logger= LoggerFactory.getLogger(UserController.class);
     /**
      * 跳转到用户中心页面时要展示用户的收藏列表
      *
@@ -55,8 +58,9 @@ public class UserController {
      * @return
      */
     @RequestMapping("/user")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String userCenter(@RequestParam("id") Long id, Model model, HttpSession session) {
+        logger.info("id="+id.toString());
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
         model.addAttribute("list", Modify(user, "collected"));

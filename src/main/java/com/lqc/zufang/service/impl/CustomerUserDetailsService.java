@@ -1,5 +1,6 @@
 package com.lqc.zufang.service.impl;
 
+import com.lqc.zufang.entity.AnyUser;
 import com.lqc.zufang.entity.User;
 import com.lqc.zufang.entity.UserRole;
 import com.lqc.zufang.service.RoleService;
@@ -43,7 +44,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
         SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(roleService.selectById(userRole.getRoleId().intValue()).getName());
         authorities.add(simpleGrantedAuthority);
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+        return new AnyUser(user.getUsername(), user.getPassword(),authorities);
     }
 
 
